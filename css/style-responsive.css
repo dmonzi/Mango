@@ -1,0 +1,53 @@
+@media screen and (max-width:480px) {
+    .globo {
+        width: 95%;
+    }
+    #plus{
+        width: 45px;
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:768px) {
+    #warning{
+        width: 80%;
+    }
+    #icon-warning {
+        font-size: 100px;
+    }
+    #fusr,#femail {
+        width: 70%;
+        height: 25px;
+    }
+    .globo {
+        width: 80%;
+    }
+    #plus{
+        width: 45px;
+        right: 10px;
+        bottom: 10px;
+    }
+    #top-usr {
+        width: 85%;
+    }
+}
+
+@media screen and (min-width:769px) and (max-width:1279px) {
+    .txt {
+        font-size: 17px;
+    }
+
+    #icon-warning {
+        font-size: 100px;
+    }
+
+    #plus {
+        width: 40px;
+    }
+    #register-form input, #login-form input {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width:1280px) {}/*Está todo bien a esta resolución*/
