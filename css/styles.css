@@ -1,3 +1,9 @@
+::-webkit-scrollbar {
+    background-color: #beff5e; /* or add it to the track */
+  }
+::-webkit-scrollbar-thumb {
+background: #c2ee81;
+}
 body {
     background-color: #c2ee81;
     margin: 0%;
