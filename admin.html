@@ -36,16 +36,31 @@
                     <th>Actions</th>
                 </tr>
                 <!-- Esta parte se rellenará sola con las peticiones a bases de datos -->
-                <tr>
+                <tr id="0">
                     <td>1</td>
                     <td>pepe</td>
                     <td>pepito</td>
                     <td>pepepepe@gmail.com</td>
                     <td>/img/cafe.jpg</td>
                     <td class="action-btn">
-                        <div><i class="fa-regular fa-pen-to-square"></i></div>
-                        <div><i class="fa-solid fa-eye"></i></div>
-                        <div><i class="fa-solid fa-trash-can"></i></div>
+                        <!-- Los eventos se van modificando al hacer la insercción, cambiando el id -->
+                        <div onclick="editContent(0)"><i class="fa-regular fa-pen-to-square"></i></div>
+                        <div onclick="viewPorfile(0)"><i class="fa-solid fa-eye"></i></div>
+                        <div onclick="deleteUser(0)"><i class="fa-solid fa-trash-can"></i></div>
+                    </td>
+                </tr>
+
+                <tr id="1">
+                    <td>1</td>
+                    <td>pepe</td>
+                    <td>pepito</td>
+                    <td>pepepepe@gmail.com</td>
+                    <td>/img/cafe.jpg</td>
+                    <td class="action-btn">
+                        <!-- Los eventos se van modificando al hacer la insercción, cambiando el id -->
+                        <div onclick="editContent(1)"><i class="fa-regular fa-pen-to-square"></i></div>
+                        <div onclick="viewPorfile(1)"><i class="fa-solid fa-eye"></i></div>
+                        <div onclick="deleteUser(1)"><i class="fa-solid fa-trash-can"></i></div>
                     </td>
                 </tr>
             </table>
