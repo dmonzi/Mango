@@ -1,0 +1,46 @@
+td:nth-child(even), th:nth-child(even) {
+    background-color: #a5a5a59f;
+}
+
+th, td{
+    border-bottom: 1px black solid;
+}
+
+td{
+    text-align: center;
+}
+
+.admin-btn{
+    margin-left: 15px;
+}
+
+#admin-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#admin-table table{
+    width: 80vw;
+    border-collapse: collapse;
+}
+
+.action-btn{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.action-btn div{
+    padding: 5%;
+    margin: 1%;
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+    border-radius: 8px;
+}
+
+.action-btn div:hover{
+    background-color: lightcoral;
+    color: red;
+}

@@ -32,6 +32,10 @@ ul {
     font-size: 25px;
 }
 
+.admin-btn{
+    margin-left: 15px;
+}
+
 li {
     margin: 1% 2%;
 }
