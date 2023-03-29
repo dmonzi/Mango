@@ -35,6 +35,9 @@ function verAdmin() {
     }
 }
 
+/**
+ * Función temporal que vacia el textarea del apartado de upload
+ */
 function vaciarArea() {
     document.forms[0]['elements'][1]['value']="";
 }

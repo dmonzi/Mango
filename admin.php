@@ -44,8 +44,6 @@
     <link rel="stylesheet" href="./css/style-responsive.css">
     <title>Mango</title>
     <link rel="icon" type="image/png" href="./images/logo.png">
-
-    <link rel="stylesheet" href="css/css-dani.css">
 </head>
 <body>
     <header>
