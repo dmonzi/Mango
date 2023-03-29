@@ -23,7 +23,14 @@
     font-size: 20px;
     background-color: white;
     border: 1px black solid;
+    transition: display 4s;
 }
 .popUp p{
     margin: 10px 20px;
+}
+.valido{
+    color: green;
+}
+.erroneo{
+    color: red;
 }

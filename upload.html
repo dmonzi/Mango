@@ -7,6 +7,7 @@
         <script src="icons/fontawesome.js"></script>
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="stylesheet" href="./css/style-responsive.css">
+        <link rel="stylesheet" href="./css/css-dani.css">
         <link rel="icon" type="image/png" href="./images/logo.png">
         <title>Mango_upload</title>
     </head>
@@ -25,12 +26,10 @@
     </header>
     <main>
         <div class="principal">
-            <div>
-                <h1>Crea tu nuevo post</h1>
-                <button type="submit"><label>Publicar</label></button>
-            </div>
-            <form action="">
-                <input type="text-area" placeholder="Introduce tu texto aquí" required>
+            <h1>Crea tu nuevo post</h1>
+            <form action="" id="contenidoTweet">
+                <textarea name="contenido" cols="100" rows="10" placeholder="Ecribe aquí!"></textarea>
+                <button type="submit" onclick="vaciarArea()"><label>Publicar</label></button>
             </form>
         </div>
     </main>

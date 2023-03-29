@@ -19,8 +19,9 @@
             <p>Crear Cuenta</p>
             <form method="POST">
                 <input type="text" name="nombre" placeholder="Nombre de Usuario" required><br><br>
-                <input id="passwd" type="password" name="contraseña" placeholder="Contraseña" required onkeypress="validarContraseña()"><br><br>
+                <input id="passwd" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
                 <input type="submit" name="iniciar" value="Crear Cuenta">
+                <span id="alertPasswd"></span>
                 <div class="terms">
                     <input id="check-term" type="checkbox" required style="width: 3vw;">
                     <p>Acepto los <a href="#"> terminos y condiciones</a></p>
@@ -30,5 +31,5 @@
         </div>
     </main>
 </body>
-<script src="js/app.js"></script>c
+<script src="js/app.js"></script>
 </html>

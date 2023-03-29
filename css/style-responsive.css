@@ -7,6 +7,9 @@
         right: 10px;
         bottom: 10px;
     }
+    #login-form{
+        width: 95vw;        
+    }
 }
 
 @media screen and (min-width:481px) and (max-width:768px) {
@@ -31,6 +34,9 @@
     #top-usr {
         width: 85%;
     }
+    #login-form{
+        width: 75vw;        
+    }
 }
 
 @media screen and (min-width:769px) and (max-width:1279px) {
@@ -47,6 +53,9 @@
     }
     #register-form input, #login-form input {
         font-size: 16px;
+    }
+    #login-form{
+        width: 45vw;        
     }
 }
 

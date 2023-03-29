@@ -1,22 +1,20 @@
 ::-webkit-scrollbar {
-    background-color: #beff5e; /* or add it to the track */
+    background-color: lightgrey;
+    width: 7px;
   }
 ::-webkit-scrollbar-thumb {
-background: #c2ee81;
+    background: #858585;
+    border-radius: 5px;
 }
+
 body {
-    background-color: #c2ee81;
+    background-color: #f8efe9;
     margin: 0%;
 }
 
-/* .margen {
-    margin-left: 25%;
-    margin-right: 25%;
-} */
-
 /* inicio del nav */
 nav {
-    background-color: #c2ee81;
+    background-color: #e9dc87;
 }
 
 ul {
@@ -164,8 +162,16 @@ a {
     margin: 0 auto;
 }
 
+#login-form{
+    padding-top: 5vh;
+    width: 28vw;
+    background: linear-gradient(45deg, red, orange, yellow, green);
+    background-size: 400% 400%;
+    position: relative;
+    animation: cambiar 20s ease-in-out infinite;
+}
+
 #login-form form {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -175,10 +181,16 @@ a {
     padding: 0%;
     margin: 0%;
     width: 100%;
-    background: linear-gradient(45deg, red, orange, yellow, green);
-    background-size: 400% 400%;
-    position: relative;
-    animation: cambiar 30s ease-in-out infinite;
+}
+
+#body-login main{
+    padding: 0%;
+    margin: 0%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes cambiar {
@@ -195,12 +207,11 @@ a {
     }
 }
 
-#register-form,
-#login-form {
+#register-form, #login-form {
     text-align: center;
     display: flex;
     flex-direction: column;
-    margin-top: 70px;
+    border-radius: 15px;
 }
 
 #register-form p:first-child,
@@ -224,7 +235,7 @@ a {
 #register-form input,
 #login-form input {
     padding: 15px;
-    background-color: #c2ee81;
+    background-color: #f8efe9;
     border: none;
     font-size: 20px;
     color: gray;
@@ -235,7 +246,6 @@ a {
 #register-form input[type="submit"],
 #login-form input[type="submit"] {
     color: black;
-    background-color: #c2ee81;
     cursor: pointer;
 }
 
@@ -252,7 +262,9 @@ a {
     justify-content: center;
     align-items: center;
 }
-
+#alertPasswd{
+    margin: 10px;
+}
 /* fin del login */
 /* inicio de la pagina user */
 #top-usr {
@@ -289,7 +301,7 @@ a {
 }
 
 #contador{
-    width: 15vw;
+    width: 15%;
 }
 
 #contador div{
@@ -323,23 +335,40 @@ a {
     align-items: center;
 }
 
-#form-search form input {
-    border: none;
+#form-search form label {
+    position: relative;
+    display: block;
     width: 400px;
     height: 30px;
+}
+
+#form-search form input {
+    position: absolute;
+    border: none;
+    width: 100%;
+    height: 30px;
     margin: 0 auto;
-    
+    border: none;
+    border-radius: 20px;
+}
+#form-search form input:focus{
+    outline: none;
 }
 
 #form-search form button {
-    margin: -5px;
+    background-color: #9c935a;
+    position: absolute;
+    left: 86%;
     width: 60px;
-    height: 42px;
+    height: 105%;
+    border-radius: 20px;
+    border: none;
 }
 
 input[placeholder*=Buscar] {
-    background-color: #2c2c2c;
-    padding: 6px;
+    background-color: #e9dc87;
+    /* padding: 5px 0 5px 10px; */
+    margin-left: 10px;
 }
 
 /*fin busqueda*/
@@ -358,26 +387,3 @@ input[placeholder*=Buscar] {
 }
 
 /*fin añadir tweet*/
-/* incio upload */
-.principal {
-    margin-left: 20vw;
-    width: 60vw;
-}
-
-.principal div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.principal form input{
-    width: 100%;
-    height: 50vh;
-    background-color: #c2ee81;
-    border-radius: 5px;
-}
-
-.principal form input::placeholder{
-    padding-left: 2%;
-}
-/* fin upload */

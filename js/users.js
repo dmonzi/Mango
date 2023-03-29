@@ -10,6 +10,14 @@ let user={
     admin: true
 }
 
+window.addEventListener("DOMContentLoaded", verAdmin);
+
+/**
+ * Comprobar si el usuario que ha iniciado sesión es admin, y si lo es, añadir un botón para acceder al panel
+ * @param none
+ * @returns none
+ */
+
 function verAdmin() {
     if (user.admin) {
         li = document.getElementById('last-li');
@@ -27,4 +35,6 @@ function verAdmin() {
     }
 }
 
-verAdmin();
+function vaciarArea() {
+    document.forms[0]['elements'][1]['value']="";
+}
