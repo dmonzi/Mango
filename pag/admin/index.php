@@ -1,6 +1,12 @@
 <?php 
     function conectar(){
-        $conexion = new mysqli('localhost', 'root', '', 'mango');
+        $driver = 'mysql';
+        $host = 'localhost';
+        $name = 'mango';
+        $user = 'root';
+        $pass = '';
+
+        $conexion = new PDO($driver.':host='.$host.';dbname='.$name.'', $user, $pass);
         return $conexion;
     }
 
@@ -18,7 +24,7 @@
     function mostrarTabla(){
         $resultado = findUsr();
 
-        while($fila = $resultado->fetch_assoc()){
+        while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
             echo '<tr id="'.$fila['id'].'"><td>'.$fila['id'].
             '</td><td>'.$fila['nombre'].
             '</td><td>'.$fila['nombre_usuario'].
@@ -40,8 +46,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/style-responsive.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/style-responsive.css">
     <title>Mango</title>
     <link rel="icon" type="image/png" href="./images/logo.png">
 </head>
@@ -50,11 +56,11 @@
         <nav>
             <ul id="list-nav">
                 <li id="home-search">
-                    <div><a href="index.html"><i class="fa-solid fa-house"></i></a></div>
-                    <div id="nav-search"><a href="search.html"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                    <div><a href="../../index.html"><i class="fa-solid fa-house"></i></a></div>
+                    <div id="nav-search"><a href="../search.html"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 </li>
-                <li><a href="#"><img src="./images/logo3.png" alt=""></a></li>
-                <li id="last-li"><a href="user.html"><i class="fa-solid fa-user"></i></a></li>
+                <li><a href="#"><img src="../../images/logo3.png" alt=""></a></li>
+                <li id="last-li"><a href="../user.html"><i class="fa-solid fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
@@ -76,6 +82,6 @@
         </div>
     </main>
 </body>
-    <script src="js/users.js"></script>
-    <script src="icons/fontawesome.js"></script>
+    <script src="../../js/users.js"></script>
+    <script src="../../icons/fontawesome.js"></script>
 </html>
