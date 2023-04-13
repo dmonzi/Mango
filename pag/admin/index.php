@@ -48,7 +48,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="../../css/style-responsive.css">
-    <title>Mango</title>
+    <title>Mango_Admin</title>
     <link rel="icon" type="image/png" href="./images/logo.png">
 </head>
 <body>
