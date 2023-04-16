@@ -43,20 +43,25 @@
             <a href="../index.html"><img id="logo-login" src="../images/logo3.png" alt=""></a>
             <p>Crear Cuenta</p>
             <form method="POST">
-                <input type="text" name="nombre" placeholder="Nombre de Usuario" required><br><br>
+                <input type="text" name="nombre" placeholder="Nombre" required><br><br>
+                <input type="text" name="nombreUsuario" placeholder="Nombre de Usuario" required><br><br>
+                <input type="text" name="email" placeholder="Email" required><br><br>
                 <input id="passwd" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
                 <input type="submit" name="iniciar" value="Crear Cuenta">
                 <?php
-                
-                    if(isset($_POST['iniciar'])){
-                        print("<script>alert('click')</script>");
-                        $conexion=conectar();
-                        var_dump($conexion);
-                        $sql = "INSERT INTO usuarios (nombre_usuario, passwd) VALUES ('dani','a')";
-                        $resultado = $conexion->query($sql);
-                    }
-                
-                ?>
+                        if(isset($_POST['iniciar'])){
+
+                            $conexion=conectar();
+                            $sql = "INSERT INTO usuarios (id, nombre, nombre_usuario, email, passwd, foto_perfil) 
+                            VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."', NULL)";
+                            $resultado = $conexion->query($sql);
+                            header("Location: ../index.php");
+                            session_start();
+                            $_SESSION['usuario_validado']=$nombre;
+
+                            
+                        }
+                    ?>
                 <span id="alertPasswd"></span>
                 <div class="terms">
                     <input id="check-term" type="checkbox" required style="width: 3vw;">

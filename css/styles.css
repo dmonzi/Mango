@@ -398,6 +398,33 @@ input[placeholder*=Buscar] {
 
 /*fin añadir tweet*/
 /*tabla admin*/
+/*index*/
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    /* border: 1px solid black; */
+}
+.tarjeta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15vw;
+    height: 15vw;
+    font-size: 30px;
+    color: #f8efe9;
+    transition: all 1s;
+    background-color: #e9dc87;
+    border-radius: 25px;
+    /* border: 1px solid black; */
+}
+.tarjeta:hover{
+    background-color: #cec275;
+    cursor: pointer;
+    opacity: 0.45;
+}
+/*cruds*/
 td:nth-child(even), th:nth-child(even) {
     background-color: #a5a5a59f;
 }
@@ -431,7 +458,7 @@ td{
     align-items: center;
 }
 
-.action-btn div{
+.action-btn a{
     padding: 5%;
     margin: 1%;
     background-color: black;
@@ -440,9 +467,31 @@ td{
     border-radius: 8px;
 }
 
-.action-btn div:hover{
+.action-btn a:hover{
     background-color: lightcoral;
     color: red;
+}
+
+.admin_delete{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: larger;
+}
+
+.admin_delete a{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #e9dc87;
+    padding: 7px;
+    transition: all 1s;
+}
+
+.admin_delete a:hover{
+    color: grey;
 }
 /*fin admin*/
 

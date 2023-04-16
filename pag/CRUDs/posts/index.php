@@ -10,9 +10,9 @@
         return $conexion;
     }
 
-    function findUsr(){
+    function findPosts(){
         $conexion = conectar();
-        $sql = 'select id, nombre, nombre_usuario, email, foto_perfil from usuarios';
+        $sql = 'select * from posts';
         $resultado = $conexion->query($sql);
         if($resultado != null){
             return $resultado;
@@ -22,17 +22,20 @@
     }
      
     function mostrarTabla(){
-        $resultado = findUsr();
+        $conexion = conectar();
+        $resultado = findPosts();
 
         while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
+
+            $nom_usr = $conexion->query("select nombre_usuario from usuarios where id = ".$fila['usuario_id'])->fetch(PDO::FETCH_ASSOC);
+
             echo '<tr id="'.$fila['id'].'"><td>'.$fila['id'].
-            '</td><td>'.$fila['nombre'].
-            '</td><td>'.$fila['nombre_usuario'].
-            '</td><td>'.$fila['email'].
-            '</td><td>'.$fila['foto_perfil'].
+            '</td><td>'.$fila['hora'].
+            '</td><td>'.$fila['contenido'].
+            '</td><td>'.$nom_usr['nombre_usuario'] .
             '</td><td class="action-btn">
             <a onclick="editContent('.$fila['id'].')"><i class="fa-regular fa-pen-to-square"></i></a>
-            <a href="../../user.php?id='.$fila['id'].'"><i class="fa-solid fa-eye"></i></a>
+            <a href="../../user.php?id='.$fila['usuario_id'].'"><i class="fa-solid fa-eye"></i></a>
             <a href="./delete.php?id='.$fila['id'].'"><i class="fa-solid fa-trash-can"></i></a></td></div>';
         }
 
@@ -49,7 +52,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../css/styles.css">
     <link rel="stylesheet" href="../../../css/style-responsive.css">
-    <title>Mango_Admin_Usuarios</title>
+    <title>Mango_Admin_Posts</title>
     <link rel="icon" type="image/png" href="../../../images/logo.png">
 </head>
 <body>
@@ -69,11 +72,10 @@
         <div id="admin-table">
             <table>
                 <tr>
-                    <th>id</th>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Porfile Picture</th>
+                    <th>Id</th>
+                    <th>Hora</th>
+                    <th>Contenido</th>
+                    <th>Usuario</th>
                     <th>Actions</th>
                 </tr>
                 <?php 

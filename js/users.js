@@ -27,7 +27,7 @@ function verAdmin() {
 
         // <i class="fa-solid fa-screwdriver-wrench"></i>
         i.classList.add('fa-solid', 'fa-screwdriver-wrench');
-        a.setAttribute('href', 'admin.html');
+        a.setAttribute('href', './pag/admin/index.php');
         a.classList.add('admin-btn');
 
         a.appendChild(i);

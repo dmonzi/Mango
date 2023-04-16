@@ -12,7 +12,7 @@
 
     function findUsr(){
         $conexion = conectar();
-        $sql = 'select id, nombre, nombre_usuario, email, foto_perfil from usuarios';
+        $sql = 'select * from usuario_has_usuario';
         $resultado = $conexion->query($sql);
         if($resultado != null){
             return $resultado;
@@ -22,17 +22,16 @@
     }
      
     function mostrarTabla(){
+        $conexion = conectar();
         $resultado = findUsr();
 
         while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
             echo '<tr id="'.$fila['id'].'"><td>'.$fila['id'].
-            '</td><td>'.$fila['nombre'].
-            '</td><td>'.$fila['nombre_usuario'].
-            '</td><td>'.$fila['email'].
-            '</td><td>'.$fila['foto_perfil'].
+            '</td><td>'.$conexion->query("select nombre_usuario from usuarios where id = ".$fila['usuario_seguidor'])->fetch(PDO::FETCH_ASSOC)['nombre_usuario'].
+            '</td><td>'.$conexion->query("select nombre_usuario from usuarios where id = ".$fila['usuario_seguido'])->fetch(PDO::FETCH_ASSOC)['nombre_usuario'].
             '</td><td class="action-btn">
             <a onclick="editContent('.$fila['id'].')"><i class="fa-regular fa-pen-to-square"></i></a>
-            <a href="../../user.php?id='.$fila['id'].'"><i class="fa-solid fa-eye"></i></a>
+            <a href="../../user.php?id='.$fila['usuario_seguido'].'"><i class="fa-solid fa-eye"></i></a>
             <a href="./delete.php?id='.$fila['id'].'"><i class="fa-solid fa-trash-can"></i></a></td></div>';
         }
 
@@ -49,7 +48,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../css/styles.css">
     <link rel="stylesheet" href="../../../css/style-responsive.css">
-    <title>Mango_Admin_Usuarios</title>
+    <title>Mango_Admin_Usuario_has_Usuario</title>
     <link rel="icon" type="image/png" href="../../../images/logo.png">
 </head>
 <body>
@@ -70,10 +69,8 @@
             <table>
                 <tr>
                     <th>id</th>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Porfile Picture</th>
+                    <th>Seguidor</th>
+                    <th>Seguido</th>
                     <th>Actions</th>
                 </tr>
                 <?php 
