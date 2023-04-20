@@ -1,7 +1,8 @@
 ::-webkit-scrollbar {
     background-color: lightgrey;
     width: 7px;
-  }
+}
+
 ::-webkit-scrollbar-thumb {
     background: #858585;
     border-radius: 5px;
@@ -30,7 +31,7 @@ ul {
     font-size: 25px;
 }
 
-.admin-btn{
+.admin-btn {
     margin-left: 15px;
 }
 
@@ -63,7 +64,7 @@ a {
     margin-right: 20%;
     margin-top: 2%; */
     margin: 1% auto;
-    width:60%;
+    width: 60%;
     border-radius: 5px;
     background-color: white;
 }
@@ -116,7 +117,7 @@ a {
     right: 0;
 }
 
-.ptos i{
+.ptos i {
     position: absolute;
     top: 0;
     right: 0;
@@ -127,9 +128,9 @@ a {
 #warning {
     display: flex;
     align-items: center;
-    justify-content:center;
-    width:50%;
-    margin:0 auto;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
 }
 
 #icon-warning {
@@ -154,7 +155,8 @@ a {
     margin-left: 30%;
 }
 
-#fusr,#femail {
+#fusr,
+#femail {
     width: 50%;
     height: 25px;
 }
@@ -172,7 +174,7 @@ a {
     margin: 0 auto;
 }
 
-#login-form{
+#login-form {
     padding-top: 5vh;
     width: 28vw;
     background: linear-gradient(45deg, red, orange, yellow, green);
@@ -193,7 +195,7 @@ a {
     width: 100%;
 }
 
-#body-login main{
+#body-login main {
     padding: 0%;
     margin: 0%;
     width: 100vw;
@@ -217,7 +219,8 @@ a {
     }
 }
 
-#register-form, #login-form {
+#register-form,
+#login-form {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -272,9 +275,11 @@ a {
     justify-content: center;
     align-items: center;
 }
-#alertPasswd{
+
+#alertPasswd {
     margin: 10px;
 }
+
 /* fin del login */
 /* inicio de la pagina user */
 #top-usr {
@@ -286,7 +291,7 @@ a {
     margin-bottom: 5%;
 }
 
-#bot-seguir{
+#bot-seguir {
     margin-left: 1vw;
     padding: 2%;
     background-color: white;
@@ -294,10 +299,11 @@ a {
     border-radius: 5px;
 }
 
-#grupo1{
+#grupo1 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    width: 20%;
 }
 
 #fot-usr {
@@ -310,24 +316,33 @@ a {
     margin-left: 7%;
 }
 
-#contador{
+#cerrar-sesion p {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 106%;
+    margin: 1%;
+    text-align: center;
+    cursor: pointer;
+}
+
+#contador {
     width: 15%;
 }
 
-#contador div{
+#contador div {
     padding: 1%;
     background-color: white;
     border-radius: 5px;
 }
 
-#contador div p{
+#contador div p {
     margin: 0;
     padding-left: 8%;
     display: inline-block;
 }
 
 
-#contador div:last-child{
+#contador div:last-child {
     margin-top: 1vw;
 }
 
@@ -361,7 +376,8 @@ a {
     border: none;
     border-radius: 20px;
 }
-#form-search form input:focus{
+
+#form-search form input:focus {
     outline: none;
 }
 
@@ -399,14 +415,15 @@ input[placeholder*=Buscar] {
 /*fin añadir tweet*/
 /*tabla admin*/
 /*index*/
-.container{
+.container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
     /* border: 1px solid black; */
 }
-.tarjeta{
+
+.tarjeta {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -419,46 +436,50 @@ input[placeholder*=Buscar] {
     border-radius: 25px;
     /* border: 1px solid black; */
 }
-.tarjeta:hover{
+
+.tarjeta:hover {
     background-color: #cec275;
     cursor: pointer;
     opacity: 0.45;
 }
+
 /*cruds*/
-td:nth-child(even), th:nth-child(even) {
+td:nth-child(even),
+th:nth-child(even) {
     background-color: #a5a5a59f;
 }
 
-th, td{
+th,
+td {
     border-bottom: 1px black solid;
 }
 
-td{
+td {
     text-align: center;
 }
 
-.admin-btn{
+.admin-btn {
     margin-left: 15px;
 }
 
-#admin-table{
+#admin-table {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#admin-table table{
+#admin-table table {
     width: 80vw;
     border-collapse: collapse;
 }
 
-.action-btn{
+.action-btn {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.action-btn a{
+.action-btn a {
     padding: 5%;
     margin: 1%;
     background-color: black;
@@ -467,12 +488,12 @@ td{
     border-radius: 8px;
 }
 
-.action-btn a:hover{
+.action-btn a:hover {
     background-color: lightcoral;
     color: red;
 }
 
-.admin_delete{
+.admin_delete {
     width: 100vw;
     height: 50vh;
     display: flex;
@@ -482,7 +503,7 @@ td{
     font-size: larger;
 }
 
-.admin_delete a{
+.admin_delete a {
     border: 1px solid black;
     border-radius: 5px;
     background-color: #e9dc87;
@@ -490,9 +511,10 @@ td{
     transition: all 1s;
 }
 
-.admin_delete a:hover{
+.admin_delete a:hover {
     color: grey;
 }
+
 /*fin admin*/
 
 
@@ -502,7 +524,7 @@ td{
     width: 60vw;
 }
 
-#contenidoTweet button{
+#contenidoTweet button {
     position: absolute;
     right: 17vw;
     border: 1px solid black;
@@ -511,7 +533,7 @@ td{
     margin-top: 2%;
 }
 
-#contenidoTweet textarea{
+#contenidoTweet textarea {
     width: 100%;
     height: 50vh;
     border: 1px solid black;
@@ -520,15 +542,17 @@ td{
     resize: none;
 }
 
-.principal form input::placeholder{
+.principal form input::placeholder {
     padding-left: 2%;
 }
+
 /* fin upload */
 /*popUp seguir usuario*/
-.globContent{
+.globContent {
     position: relative;
 }
-.popUp{
+
+.popUp {
     display: none;
     position: relative;
     top: 30px;
@@ -539,13 +563,17 @@ td{
     border: 1px black solid;
     transition: display 4s;
 }
-.popUp p{
+
+.popUp p {
     margin: 10px 20px;
 }
-.valido{
+
+.valido {
     color: green;
 }
-.erroneo{
+
+.erroneo {
     color: red;
 }
+
 /*fin popUp seguir usuario*/

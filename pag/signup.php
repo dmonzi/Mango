@@ -1,4 +1,4 @@
-<?php 
+<?php
 
     function conectar(){
         // $conexion = new mysqli('localhost', 'root', '', 'vehiculos');
@@ -12,17 +12,6 @@
         return $conexion;
     }
     
-    function sacarCoches(){
-        $conexion = conectar();
-        $sql = 'select * from coches';
-        $resultado = $conexion->query($sql);
-
-        if($resultado != null){
-            return $resultado;
-        }else{
-            return false;
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,12 +41,13 @@
                         if(isset($_POST['iniciar'])){
 
                             $conexion=conectar();
-                            $sql = "INSERT INTO usuarios (id, nombre, nombre_usuario, email, passwd, foto_perfil) 
-                            VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."', NULL)";
+                            // $contraseña_crypt = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
+                            $sql = "INSERT INTO usuarios (id, nombre, nombre_usuario, email, passwd) 
+                            VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."')";
                             $resultado = $conexion->query($sql);
                             header("Location: ../index.php");
                             session_start();
-                            $_SESSION['usuario_validado']=$nombre;
+                            $_SESSION['usuario_validado']=$_POST['nombre'];
 
                             
                         }

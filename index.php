@@ -1,4 +1,6 @@
 <?php 
+    session_start();
+    // var_dump($_SESSION['usuario_validado']);
     function conectar(){
         $driver = 'mysql';
         $host = 'localhost';
@@ -9,36 +11,44 @@
         $conexion = new PDO($driver.':host='.$host.';dbname='.$name.'', $user, $pass);
         return $conexion;
     }
-
-    function findPosts(){
-        $conexion = conectar();
-        $sql = 'select id, usuario_id as usuario, contenido from posts';
-        $resultado = $conexion->query($sql);
-        if($resultado != null){
-            return $resultado;
-        }else{
-            return false;
-        }
-    }
      
     function mostrarPosts(){
         $conexion = conectar();
-        $resultado = findPosts();
 
-        while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
-            echo '<div class="globo">
-                    <div class="globContent">
-                        <div class="fot-txt">
-                            <img src="./images/cafe.jpg" alt="fot_usr">
-                            <div>
-                                <a class="nom" href="#">'.$conexion->query("select nombre_usuario from usuarios where id = ". $fila['usuario'])->fetch(PDO::FETCH_ASSOC)['nombre_usuario'].'</a>
-                                <p class="txt">'.$fila['contenido'].'</p>
-                            </div>
-                        </div>
-                        <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-                    </div>
-                </div>';
+        if (isset($_SESSION['usuario_validado'])) {
+            $resultado = $conexion->query("select id from usuarios where nombre_usuario='".$_SESSION['usuario_validado']."'")->fetch(PDO::FETCH_ASSOC);
+            // print(count($resultado));
+            //Valida la cantidad de filas que devuelve la sentencia
+            if (count($resultado) > 0) {
+                $id = $resultado['id'];
+            }else {
+                header("Location: pag/login.php");
+            }
+        }else{
+            header("Location: pag/login.php");
         }
+
+        if ($id > 0) {
+            
+            $resultado = $conexion->query("select * from Usuario_Posts where user_id = (select usuario_seguido from usuario_has_usuario where usuario_seguidor = ".$id.")");
+            // var_dump($resultado -> rowCount());
+            while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
+                echo '<div class="globo">
+                <div class="globContent">
+                    <div class="fot-txt">
+                        <img src="./images/cafe.jpg" alt="fot_usr">
+                        <div>
+                            <a class="nom" href="/pag/user?id='.$fila['id'].'">'.$fila['nombre'].'</a>
+                            <p class="txt">'.$fila['contenido'].'</p>
+                        </div>
+                    </div>
+                    <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                </div>
+            </div>';
+            }
+            
+        }
+        
     }
 ?>
 <!DOCTYPE html>

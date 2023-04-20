@@ -61,7 +61,7 @@ function addPopUp(array){
             if(divPopUp.style.display=='block'){
                 divPopUp.style.display='none';
             }else{
-            divPopUp.style.display='block';
+                divPopUp.style.display='block';
             }
         });
     }
@@ -69,7 +69,7 @@ function addPopUp(array){
 
 
 
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("DOMContentLoaded", function(event){
     let puntos=document.getElementsByClassName('ptos');
     addPopUp(puntos);
     document.querySelector('i[class*=fa-solid]')
