@@ -1,17 +1,10 @@
 <?php 
-    function conectar(){
-        $driver = 'mysql';
-        $host = 'localhost';
-        $name = 'mango';
-        $user = 'root';
-        $pass = '';
-
-        $conexion = new PDO($driver.':host='.$host.';dbname='.$name.'', $user, $pass);
-        return $conexion;
-    }
+    session_start();
+    require_once('../../../theme\database.php');
 
     function findUsr(){
-        $conexion = conectar();
+        $database = new Database();
+        $conexion = $database -> conectar();
         $sql = 'select * from usuario_has_usuario';
         $resultado = $conexion->query($sql);
         if($resultado != null){
@@ -22,7 +15,8 @@
     }
      
     function mostrarTabla(){
-        $conexion = conectar();
+        $database = new Database();
+        $conexion = $database -> conectar();
         $resultado = findUsr();
 
         while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
@@ -37,6 +31,14 @@
 
         echo "</tbody>";
         
+    }
+    
+    function verAdmin(){
+        // var_dump($_SESSION);
+        $admins = array("dcues", "d.monzi", "sergio");
+        if (in_array($_SESSION['usuario_validado'], $admins)) {
+            echo '<a href="../../admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+        }
     }
 ?>
 
@@ -57,10 +59,15 @@
             <ul id="list-nav">
                 <li id="home-search">
                     <div><a href="../../../index.php"><i class="fa-solid fa-house"></i></a></div>
-                    <div id="nav-search"><a href="../../search.html"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                    <div id="nav-search"><a href="../../search.php"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 </li>
                 <li><a href="#"><img src="../../../images/logo3.png" alt=""></a></li>
-                <li id="last-li"><a href="../../user.html"><i class="fa-solid fa-user"></i></a></li>
+                <li id="last-li">
+                    <a href="../../user.php"><i class="fa-solid fa-user"></i></a>
+                    <?php 
+                        verAdmin();
+                    ?>
+                </li>
             </ul>
         </nav>
     </header>

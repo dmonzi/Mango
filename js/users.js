@@ -10,7 +10,7 @@ let user={
     admin: true
 }
 
-window.addEventListener("DOMContentLoaded", verAdmin);
+// window.addEventListener("DOMContentLoaded", verAdmin);
 
 /**
  * Comprobar si el usuario que ha iniciado sesión es admin, y si lo es, añadir un botón para acceder al panel

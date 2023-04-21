@@ -1,17 +1,5 @@
 <?php 
-
-    function conectar(){
-        // $conexion = new mysqli('localhost', 'root', '', 'vehiculos');
-        $driver = 'mysql';
-        $host = 'localhost';
-        $name = 'mango';
-        $user = 'root';
-        $pass = '';
-
-        $conexion = new PDO($driver.':host='.$host.';dbname='.$name.'', $user, $pass);
-        return $conexion;
-    }
-    
+    require_once('../theme\database.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,12 +24,13 @@
                 <input id="passwd" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
                 <input type="submit" name="iniciar" value="Inicia Sesión">
                 <?php
+                    $database = new Database();
                         if(isset($_POST['iniciar'])){
 
                             $nombre = $_POST['nombre'];
                             $contraseña = $_POST['passwd'];
                             $contraseña_crypt = password_hash($contraseña, PASSWORD_DEFAULT);
-                            $conexion=conectar();
+                            $conexion = $database -> conectar();
                             $query="SELECT nombre_usuario, passwd FROM usuarios WHERE nombre_usuario='".$nombre."'";
                             $resultado=$conexion->query($query);
                             $numRows = $resultado->rowCount();

@@ -1,30 +1,24 @@
 <?php
+    require_once('../theme\database.php');
+
     session_start();
 
-    function conectar(){
-        $driver = 'mysql';
-        $host = 'localhost';
-        $name = 'mango';
-        $user = 'root';
-        $pass = '';
-
-        $conexion = new PDO($driver.':host='.$host.';dbname='.$name.'', $user, $pass);
-        return $conexion;
-    }
-
     function mostrarUsr(){
-        $conexion = conectar();
+        $database = new Database();
+        $conexion = $database -> conectar();
 
-        if (isset($_SESSION['usuario_validado'])) {
-            $resultado = $conexion->query("select id from usuarios where nombre_usuario='".$_SESSION['usuario_validado']."'")->fetch(PDO::FETCH_ASSOC);
-            // print($resultado);
-            if ($resultado > 0) {
-                $id = $resultado['id'];
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+        }else if (isset($_SESSION['usuario_validado'])) {
+            $resultado = $conexion->query("select id from usuarios where nombre_usuario='".$_SESSION['usuario_validado']."'");
+            // var_dump($resultado);
+            if ($resultado -> rowCount() > 0) {
+                $id = $resultado->fetch(PDO::FETCH_ASSOC)['id'];
             }else {
                 $id = -1;
-            }
+            } 
         }else{
-            header("Location: ./pag/login.php");
+            header("Location: login.php");
         }
 
         if ($id != -1) {
@@ -81,6 +75,14 @@
         }
         
     }
+
+    function verAdmin(){
+        // var_dump($_SESSION);
+        $admins = array("dcues", "d.monzi", "sergio");
+        if (in_array($_SESSION['usuario_validado'], $admins)) {
+            echo '<a href="./admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="esp">
@@ -100,10 +102,15 @@
             <ul id="list-nav">
                 <li id="home-search">
                     <div><a href="../index.php"><i class="fa-solid fa-house"></i></a></div>
-                    <div id="nav-search"><a href="../search.html"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                    <div id="nav-search"><a href="./search.php"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 </li>
                 <li><a href="#"><img src="../images/logo3.png" alt=""></a></li>
-                <li id="last-li"><a href="./user.php"><i class="fa-solid fa-user"></i></a></li>
+                <li id="last-li">
+                    <a href="./user.php"><i class="fa-solid fa-user"></i></a>
+                    <?php 
+                        verAdmin();
+                    ?>
+                </li>
             </ul>
         </nav>
     </header>

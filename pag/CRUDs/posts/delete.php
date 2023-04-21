@@ -1,17 +1,10 @@
 <?php
-    function conectar(){
-        $driver = 'mysql';
-        $host = 'localhost';
-        $name = 'mango';
-        $user = 'root';
-        $pass = '';
-
-        $conexion = new PDO($driver.':host='.$host.';dbname='.$name.'', $user, $pass);
-        return $conexion;
-    }
+    session_start();
+    require_once('../../../theme\database.php');
 
     function deletePosts(){
-        $conexion = conectar();
+        $database = new Database();
+        $conexion = $database -> conectar();
 
         if(isset($_GET['id'])){
             $id = $_GET['id'];

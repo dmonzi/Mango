@@ -1,16 +1,5 @@
 <?php
-
-    function conectar(){
-        // $conexion = new mysqli('localhost', 'root', '', 'vehiculos');
-        $driver = 'mysql';
-        $host = 'localhost';
-        $name = 'mango';
-        $user = 'root';
-        $pass = '';
-
-        $conexion = new PDO($driver.':host='.$host.';dbname='.$name.'', $user, $pass);
-        return $conexion;
-    }
+    require_once('../theme\database.php');
     
 ?>
 <!DOCTYPE html>
@@ -38,20 +27,21 @@
                 <input id="passwd" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
                 <input type="submit" name="iniciar" value="Crear Cuenta">
                 <?php
-                        if(isset($_POST['iniciar'])){
+                    $database = new Database();
 
-                            $conexion=conectar();
-                            // $contraseña_crypt = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
-                            $sql = "INSERT INTO usuarios (id, nombre, nombre_usuario, email, passwd) 
-                            VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."')";
-                            $resultado = $conexion->query($sql);
-                            header("Location: ../index.php");
-                            session_start();
-                            $_SESSION['usuario_validado']=$_POST['nombre'];
+                    if(isset($_POST['iniciar'])){
+                        $conexion = $database -> conectar();
 
-                            
-                        }
-                    ?>
+                        // $contraseña_crypt = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
+                        $sql = "INSERT INTO usuarios (id, nombre, nombre_usuario, email, passwd) 
+                        VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."')";
+                        $resultado = $conexion->query($sql);
+                        header("Location: ../index.php");
+                        session_start();
+                        $_SESSION['usuario_validado']=$_POST['nombre'];
+                        
+                    }
+                ?>
                 <span id="alertPasswd"></span>
                 <div class="terms">
                     <input id="check-term" type="checkbox" required style="width: 3vw;">
