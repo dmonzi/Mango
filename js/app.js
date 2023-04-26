@@ -69,7 +69,7 @@ function addPopUp(array){
 
 
 
-window.addEventListener("DOMContentLoaded", function(event){
+document.addEventListener("DOMContentLoaded", function(event){
     let puntos=document.getElementsByClassName('ptos');
     addPopUp(puntos);
     document.querySelector('i[class*=fa-solid]')
