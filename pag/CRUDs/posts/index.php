@@ -28,7 +28,7 @@
             '</td><td>'.$fila['contenido'].
             '</td><td>'.$nom_usr['nombre_usuario'] .
             '</td><td class="action-btn">
-            <a onclick="editContent('.$fila['id'].')"><i class="fa-regular fa-pen-to-square"></i></a>
+            <a href="./edit.php?id='.$fila['id'].'"><i class="fa-regular fa-pen-to-square"></i></a>
             <a href="../../user.php?id='.$fila['usuario_id'].'"><i class="fa-solid fa-eye"></i></a>
             <a href="./delete.php?id='.$fila['id'].'"><i class="fa-solid fa-trash-can"></i></a></td></div>';
         }
@@ -90,6 +90,10 @@
                 ?>
             </table>
         </div>
+        
+        <a href="./create.php">
+            <div id="plus"><img src="../../../images/plus.png"></div>
+        </a>
     </main>
 </body>
     <script src="../../../js/users.js"></script>

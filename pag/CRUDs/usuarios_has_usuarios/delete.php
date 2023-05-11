@@ -13,6 +13,7 @@
 
             if($conexion->query($sql)){
                 echo '<p>Relación elimniada con éxito<br></p><a href="./index.php">Volver</a>';
+                header("Location: ./index.php");
             }
         }else {
             echo '<p style="color:red;">ERROR: No hay ninguna relación seleccionada</p><a href="./index.php">Volver</a>';

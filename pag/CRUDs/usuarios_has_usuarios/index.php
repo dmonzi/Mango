@@ -24,7 +24,7 @@
             '</td><td>'.$conexion->query("select nombre_usuario from usuarios where id = ".$fila['usuario_seguidor'])->fetch(PDO::FETCH_ASSOC)['nombre_usuario'].
             '</td><td>'.$conexion->query("select nombre_usuario from usuarios where id = ".$fila['usuario_seguido'])->fetch(PDO::FETCH_ASSOC)['nombre_usuario'].
             '</td><td class="action-btn">
-            <a onclick="editContent('.$fila['id'].')"><i class="fa-regular fa-pen-to-square"></i></a>
+            <a href="./edit.php?id='.$fila['id'].'"><i class="fa-regular fa-pen-to-square"></i></a>
             <a href="../../user.php?id='.$fila['usuario_seguido'].'"><i class="fa-solid fa-eye"></i></a>
             <a href="./delete.php?id='.$fila['id'].'"><i class="fa-solid fa-trash-can"></i></a></td></div>';
         }
@@ -85,6 +85,10 @@
                 ?>
             </table>
         </div>
+        
+        <a href="./create.php">
+            <div id="plus"><img src="../../../images/plus.png"></div>
+        </a>
     </main>
 </body>
     <script src="../../../js/users.js"></script>

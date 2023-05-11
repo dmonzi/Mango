@@ -25,14 +25,14 @@
 
         if ($id > 0) {
             
-            $resultado = $conexion->query("select * from Usuario_Posts where user_id = (select usuario_seguido from usuario_has_usuario where usuario_seguidor = ".$id.")");
+            $resultado = $conexion->query("select * from Usuario_Posts where user_id in (select usuario_seguido from usuario_has_usuario where usuario_seguidor = ".$id.")");
             // var_dump($resultado -> rowCount());
             while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
                 // var_dump($fila);
                 echo '<div class="globo">
                 <div class="globContent">
                     <div class="fot-txt">
-                        <img src="./images/cafe.jpg" alt="fot_usr">
+                        <img src="./images/'.$conexion->query("select foto_perfil from usuarios where id='".$fila['user_id']."'")->fetch(PDO::FETCH_ASSOC)['foto_perfil'].'" alt="fot_usr">
                         <div>
                             <a class="nom" href="./pag/user.php?id='.$fila['user_id'].'">'.$fila['nombre'].'</a>
                             <p class="txt">'.$fila['contenido'].'</p>
@@ -93,7 +93,6 @@
         ?>
 
         <a href="./pag/upload.php">
-        <!-- <a href="upload.html"> -->
             <div id="plus"><img src="./images/plus.png"></div>
         </a>
     </main>

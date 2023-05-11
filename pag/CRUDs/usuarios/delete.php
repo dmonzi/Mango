@@ -18,6 +18,7 @@
 
             if($conexion->query($sql)){
                 echo '<p>Usuario elimniado con éxito<br></p><a href="./index.php">Volver</a>';
+                header("Location: ./index.php");
             }
         }else {
             echo '<p style="color:red;">ERROR: No hay ningún usuario seleccionado</p><a href="./index.php">Volver</a>';

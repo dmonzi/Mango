@@ -26,7 +26,7 @@
                 <?php
                     $database = new Database();
                         if(isset($_POST['iniciar'])){
-
+                            
                             $nombre = $_POST['nombre'];
                             $contraseña = $_POST['passwd'];
                             $contraseña_crypt = password_hash($contraseña, PASSWORD_DEFAULT);

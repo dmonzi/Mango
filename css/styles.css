@@ -100,7 +100,6 @@ a {
 }
 
 .fot-txt div:last-child {
-    margin-left: 3%;
     margin-top: 5px;
     font-size: 25px;
     margin-right: 50px;
@@ -515,6 +514,14 @@ td {
     color: grey;
 }
 
+#update-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vh;
+}
+
 /*fin admin*/
 
 
@@ -524,7 +531,7 @@ td {
     width: 60vw;
 }
 
-#contenidoTweet button {
+#contenidoTweet input[type="submit"] {
     position: absolute;
     right: 17vw;
     border: 1px solid black;

@@ -9,8 +9,10 @@
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
+            $boton = '<form id="" action="../theme/añadirSeguidor.php?id='.$id.'" method="POST"><input type="submit" name="btn-eguir" value="Seguir"></form>';
         }else if (isset($_SESSION['usuario_validado'])) {
             $resultado = $conexion->query("select id from usuarios where nombre_usuario='".$_SESSION['usuario_validado']."'");
+            $boton = '<a href="../theme/cerrar_sesion.php"><p>Cerrar Sesión</p></a>';
             // var_dump($resultado);
             if ($resultado -> rowCount() > 0) {
                 $id = $resultado->fetch(PDO::FETCH_ASSOC)['id'];
@@ -45,7 +47,7 @@
                     <div id="grupo1">
                         <div id=""><img id="fot-usr" src="../images/'.$foto.'" alt=""></div>
                         <div id="nom-usr">'.$nombre.'</div>
-                        <div id="cerrar-sesion"><a href="../theme/cerrar_sesion.php"><p>Cerrar Sesión</p></a></div>
+                        <div id="cerrar-sesion">'.$boton.'</div>
                         
                     </div>
                     <div id="contador">
@@ -95,6 +97,7 @@
     <link rel="stylesheet" href="../css/style-responsive.css">
     <title>Mango_User</title>
     <link rel="icon" type="image/png" href="../images/logo.png">
+
 </head>
 <body>
     <header>
