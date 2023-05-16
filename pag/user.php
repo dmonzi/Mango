@@ -9,10 +9,23 @@
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $boton = '<form id="" action="../theme/añadirSeguidor.php?id='.$id.'" method="POST"><input type="submit" name="btn-eguir" value="Seguir"></form>';
+
+            //Añadir el boton de seguir
+            // Ver si sigues al usuario
+            $resultado = $conexion->query('select count(*) from usuario_has_usuario where usuario_seguidor='.$_SESSION['id_usuario_validado'].' && usuario_seguido='. $id)->fetch(PDO::FETCH_ASSOC)['count(*)'];
+
+            if ($resultado == 0) {
+                //no le sigues
+                $boton = '<form id="" action="../theme/añadirSeguidor.php?id='.$id.'" method="POST"><input type="submit" name="btn-eguir" value="Seguir"></form>';
+            }else{
+                // le sigues
+                $boton = "";
+            }
+            
         }else if (isset($_SESSION['usuario_validado'])) {
             $resultado = $conexion->query("select id from usuarios where nombre_usuario='".$_SESSION['usuario_validado']."'");
-            $boton = '<a href="../theme/cerrar_sesion.php"><p>Cerrar Sesión</p></a>';
+            // $boton = '<a href="../theme/cerrar_sesion.php"><p>Cerrar Sesión</p></a>';
+            $boton = '<form id="" action="../theme/cerrar_sesion.php" method="POST"><input type="submit" name="btn-cerrarSesion" value="Cerrar Sesión"></form>';
             // var_dump($resultado);
             if ($resultado -> rowCount() > 0) {
                 $id = $resultado->fetch(PDO::FETCH_ASSOC)['id'];
@@ -58,19 +71,35 @@
                 // <div id="bot-seguir"><a href="#">Seguir</a></div>
 
             // Post
-            while($fila = $posts->fetch(PDO::FETCH_ASSOC)){
-                echo '<div class="globo">
-                        <div class="globContent">
-                            <div class="fot-txt">
-                                <img src="../images/'.$foto.'" alt="fot_usr">
-                                <div>
-                                    <a class="nom" href="./user.php?id='.$id.'">'.$nombre.'</a>
-                                    <p class="txt">'.$fila['contenido'].'</p>
+            if ($posts -> rowCount() > 0) {
+                while($fila = $posts->fetch(PDO::FETCH_ASSOC)){
+                    echo '<div class="globo">
+                            <div class="globContent">
+                                <div class="fot-txt">
+                                    <img src="../images/'.$foto.'" alt="fot_usr">
+                                    <div>
+                                        <a class="nom" href="./user.php?id='.$id.'">'.$nombre.'</a>
+                                        <p class="txt">'.$fila['contenido'].'</p>
+                                    </div>
                                 </div>
+                                <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
                             </div>
-                            <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                        </div>';
+                }
+            }else {
+                echo '<div class="globo">
+                    <div class="globContent">
+                        <div class="fot-txt">
+                            <img src="../images/logo.png" alt="fot_usr">
+                            <div>
+                                <p class="nom">Mango</p>
+                                <p class="txt">Aun no tienes ningun post, escribe tu primer post para compartirlo con tus amigos</p>
+                                <a href="./upload.php" style="font-size: large; text-decoration:underline;">Escríbelo aquí</a>
+                            </div>
                         </div>
-                    </div>';
+                        <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                    </div>
+                </div>';
             }
         }else {
             header("Location: ./login.php");
@@ -78,11 +107,10 @@
         
     }
 
+    /*Añadir el boton del panel de administración*/
     function verAdmin(){
-        // var_dump($_SESSION);
-        $admins = array("dcues", "d.monzi", "sergio");
-        if (in_array($_SESSION['usuario_validado'], $admins)) {
-            echo '<a href="./admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+        if ($_SESSION['admin']) {
+            echo '<a href="./pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
         }
     }
 ?>

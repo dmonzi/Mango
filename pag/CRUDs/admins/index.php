@@ -2,10 +2,10 @@
     session_start();
     require_once('../../../theme\database.php');
 
-    function findUsr(){
+    function findPosts(){
         $database = new Database();
         $conexion = $database -> conectar();
-        $sql = 'select * from usuario_has_usuario';
+        $sql = "select admins.id, usuarios.nombre from admins inner join usuarios where usuarios.id = admins.usuario_id";
         $resultado = $conexion->query($sql);
         if($resultado != null){
             return $resultado;
@@ -17,22 +17,21 @@
     function mostrarTabla(){
         $database = new Database();
         $conexion = $database -> conectar();
-        $resultado = findUsr();
+        $resultado = findPosts();
 
         while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
+
             echo '<tr id="'.$fila['id'].'"><td>'.$fila['id'].
-            '</td><td>'.$conexion->query("select nombre_usuario from usuarios where id = ".$fila['usuario_seguidor'])->fetch(PDO::FETCH_ASSOC)['nombre_usuario'].
-            '</td><td>'.$conexion->query("select nombre_usuario from usuarios where id = ".$fila['usuario_seguido'])->fetch(PDO::FETCH_ASSOC)['nombre_usuario'].
+            '</td><td>'.$fila['nombre'].
             '</td><td class="action-btn">
             <a href="./edit.php?id='.$fila['id'].'"><i class="fa-regular fa-pen-to-square"></i></a>
-            <a href="../../user.php?id='.$fila['usuario_seguido'].'"><i class="fa-solid fa-eye"></i></a>
             <a href="./delete.php?id='.$fila['id'].'"><i class="fa-solid fa-trash-can"></i></a></td></div>';
         }
 
         echo "</tbody>";
         
     }
-    
+
     /*Añadir el boton del panel de administración*/
     function verAdmin(){
         if ($_SESSION['admin']) {
@@ -49,7 +48,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../css/styles.css">
     <link rel="stylesheet" href="../../../css/style-responsive.css">
-    <title>Mango_Admin_Usuario_has_Usuario</title>
+    <title>Mango_Admin_admins</title>
     <link rel="icon" type="image/png" href="../../../images/logo.png">
 </head>
 <body>
@@ -72,11 +71,10 @@
     </header>
     <main>
         <div id="admin-table">
-            <table>
+            <table id="tablaAdmins">
                 <tr>
-                    <th>id</th>
-                    <th>Seguidor</th>
-                    <th>Seguido</th>
+                    <th>Id</th>
+                    <th>Usuario</th>
                     <th>Actions</th>
                 </tr>
                 <?php 

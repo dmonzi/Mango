@@ -34,6 +34,9 @@
             <a class="tarjeta" href="../CRUDs/posts/index.php">
                 <p>Posts</p>
             </a>
+            <a class="tarjeta" href="../CRUDs/admins/index.php">
+                <p>Admins</p>
+            </a>
         </div>
     </main>
 </body>

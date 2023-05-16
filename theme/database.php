@@ -36,5 +36,14 @@
             $numRows=$resultado->rowCount();
             return $numRows;
         }
+
+        public function followUser($idSeguidor, $idSeguido){
+            try {
+                $conexion=Database::conectar();
+                $conexion->query('insert into usuario_has_usuario (usuario_seguidor, usuario_seguido) values ('.$idSeguidor.', '.$idSeguido.')');
+            } catch (PDOException $e) {
+                echo 'Falló la conexión ' . $e->getMessage();
+            }
+        }
     }
 ?>

@@ -31,7 +31,7 @@
                             $contraseña = $_POST['passwd'];
                             $contraseña_crypt = password_hash($contraseña, PASSWORD_DEFAULT);
                             $conexion = $database -> conectar();
-                            $query="SELECT nombre_usuario, passwd FROM usuarios WHERE nombre_usuario='".$nombre."'";
+                            $query="SELECT id, nombre_usuario, passwd FROM usuarios WHERE nombre_usuario='".$nombre."'";
                             $resultado=$conexion->query($query);
                             $numRows = $resultado->rowCount();
                             
@@ -39,12 +39,14 @@
                                 print("<p>Ha ocurrido un error, el usuario no existe</p>");
                             }else{                                
                                 $fila=$resultado->fetch(PDO::FETCH_ASSOC);
+                                $idBD=$fila['id'];
                                 $passwdBD=$fila['passwd'];
                                 $usuarioBD=$fila['nombre_usuario'];
                                 if ($passwdBD == $contraseña) {
                                     session_start();
                                     echo "<p>Bienvenido, ".$usuarioBD."!</p>";
                                     $_SESSION['usuario_validado'] = $usuarioBD;
+                                    $_SESSION['id_usuario_validado'] = $idBD;
                                     header("Location: ../index.php");
                                 }else{
                                     echo "<p>Contraseña incorrecta.</p>";

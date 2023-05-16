@@ -67,8 +67,6 @@ function addPopUp(array){
     }
 }
 
-
-
 document.addEventListener("DOMContentLoaded", function(event){
     let puntos=document.getElementsByClassName('ptos');
     addPopUp(puntos);

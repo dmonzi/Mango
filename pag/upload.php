@@ -3,6 +3,13 @@ session_start();
 require_once('../theme/database.php');
 
 $database = new Database();
+
+/*Añadir el boton del panel de administración*/
+function verAdmin(){
+    if ($_SESSION['admin']) {
+        echo '<a href="./pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +31,12 @@ $database = new Database();
                     <div id="nav-search"><a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 </li>
                 <li><a href="#"><img src="../images/logo3.png" alt=""></a></li>
-                <li id="last-li"><a href="user.php"><i class="fa-solid fa-user"></i></a></li>
+                <li id="last-li">
+                    <a href="user.php"><i class="fa-solid fa-user"></i></a>
+                    <?php 
+                        verAdmin();
+                    ?>
+                </li>
             </ul>
         </nav>
     </header>
@@ -41,9 +53,16 @@ $database = new Database();
                     $resultado=$conexion->query($query);
                     
                     if(isset($_POST['publicar'])){
-                        print("INSERT INTO posts 
+                        $query="INSERT INTO posts 
                         (id, hora, contenido, usuario_id) 
-                        VALUES (NULL, CURRENT_TIMESTAMP,".$_POST['contenido'].", ".$_SESSION['usuario_validado'].")");
+                        VALUES (NULL, CURRENT_TIMESTAMP,'".$_POST['contenido']."', ".$_SESSION['id_usuario_validado'].")";
+                        //lo tengo que almacenar en una variable para poder usar el row count
+                        $resultadoQuery=$conexion->query($query);
+                        //Evaluo cuantas filas han sido afectadas con ese insert
+                        if($resultadoQuery->rowCount()>0){
+                            header("Location: user.php");
+                        }
+                        
                     }
                 ?>
             </form>

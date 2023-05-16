@@ -27,30 +27,66 @@
             
             $resultado = $conexion->query("select * from Usuario_Posts where user_id in (select usuario_seguido from usuario_has_usuario where usuario_seguidor = ".$id.")");
             // var_dump($resultado -> rowCount());
-            while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
-                // var_dump($fila);
-                echo '<div class="globo">
-                <div class="globContent">
-                    <div class="fot-txt">
-                        <img src="./images/'.$conexion->query("select foto_perfil from usuarios where id='".$fila['user_id']."'")->fetch(PDO::FETCH_ASSOC)['foto_perfil'].'" alt="fot_usr">
-                        <div>
-                            <a class="nom" href="./pag/user.php?id='.$fila['user_id'].'">'.$fila['nombre'].'</a>
-                            <p class="txt">'.$fila['contenido'].'</p>
+            
+            if ($resultado -> rowCount() > 0) {
+                while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
+                    // var_dump($fila);
+                    echo '<div class="globo">
+                    <div class="globContent">
+                        <div class="fot-txt">
+                            <img src="./images/'.$conexion->query("select foto_perfil from usuarios where id='".$fila['user_id']."'")->fetch(PDO::FETCH_ASSOC)['foto_perfil'].'" alt="fot_usr">
+                            <div>
+                                <a class="nom" href="./pag/user.php?id='.$fila['user_id'].'">'.$fila['nombre'].'</a>
+                                <p class="txt">'.$fila['contenido'].'</p>
+                            </div>
                         </div>
+                        <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
                     </div>
-                    <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-                </div>
-            </div>';
+                </div>';
+                }
+            }else {
+                echo '<div class="globo">
+                    <div class="globContent">
+                        <div class="fot-txt">
+                            <img src="./images/logo.png" alt="fot_usr">
+                            <div>
+                                <p class="nom">Mango</p>
+                                <p class="txt">Aun no sigues a nadie, sigue a alguien para ver sus posts</p>
+                                <a href="./pag/search.php" style="font-size: large; text-decoration:underline;">Buscar amigos</a>
+                            </div>
+                        </div>
+                        <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                    </div>
+                </div>';
             }
+            
             
         }
         
     }
 
-    function verAdmin(){
+    /*Añadir el boton de admin si el usuario se encuentra en la tabla de administradores*/
+    function guardarAdmin(){
+        $database = new Database();
+        $conexion = $database -> conectar();
+        $_SESSION['admin'] = false;
+
         // var_dump($_SESSION);
-        $admins = array("dcues", "d.monzi", "sergio");
-        if (in_array($_SESSION['usuario_validado'], $admins)) {
+        $admins = $conexion->query("select usuario_id from admins");
+
+        while($fila = $admins->fetch(PDO::FETCH_ASSOC)){
+            // var_dump($fila);
+            if ($_SESSION['id_usuario_validado'] == $fila['usuario_id']) {
+                $_SESSION['admin'] = true;
+            }
+        }
+    }
+
+    /*Añadir el boton del panel de administración*/
+    function verAdmin(){
+        guardarAdmin();
+
+        if ($_SESSION['admin']) {
             echo '<a href="./pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
         }
     }

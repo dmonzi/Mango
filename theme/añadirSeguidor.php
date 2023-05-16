@@ -1,5 +1,5 @@
 <?php 
-    require_once('../theme\database.php');
+    require_once('../theme/database.php');
 
     session_start();
 
@@ -11,6 +11,6 @@
     
     $conexion->query('insert into usuario_has_usuario (usuario_seguidor, usuario_seguido) values ('.$resultado.', '.$id.')');
     echo('hola');
-    header("Location: ../pag/user.php");
+    header("Location: ../pag/user.php?id=".$id);
 
 ?>

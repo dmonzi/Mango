@@ -1,11 +1,10 @@
 <?php
     session_start();
 
+    /*Añadir el boton del panel de administración*/
     function verAdmin(){
-        // var_dump($_SESSION);
-        $admins = array("dcues", "d.monzi", "sergio");
-        if (in_array($_SESSION['usuario_validado'], $admins)) {
-            echo '<a href="../../admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+        if ($_SESSION['admin']) {
+            echo '<a href="./pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
         }
     }
 ?>
