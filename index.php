@@ -1,6 +1,5 @@
 <?php 
 
-    // include("./theme/database.php");
     require_once('theme\database.php');
 
     session_start();
@@ -10,22 +9,15 @@
         $database = new Database();
         $conexion = $database -> conectar();
 
-        if (isset($_SESSION['usuario_validado'])) {
-            $resultado = $conexion->query("select id from usuarios where nombre_usuario='".$_SESSION['usuario_validado']."'");
-            // print(count($resultado));
-            //Valida la cantidad de filas que devuelve la sentencia
-            if ($resultado -> rowCount() > 0) {
-                $id = $resultado->fetch(PDO::FETCH_ASSOC)['id'];
-            }else {
-                header("Location: pag/login.php");
-            }
+        if (isset($_SESSION['id_usuario_validado'])) {
+            $id = $_SESSION['id_usuario_validado'];
         }else{
             header("Location: pag/login.php");
         }
 
-        if ($id > 0) {
+        if (isset($id)) {
             
-            $resultado = $conexion->query("select * from Usuario_Posts where user_id in (select usuario_seguido from usuario_has_usuario where usuario_seguidor = ".$id.")");
+            $resultado = $conexion->query("select * from Usuario_Posts where user_id in (select usuario_seguido from usuario_has_usuario where usuario_seguidor = ".$id.") order by hora desc");
             // var_dump($resultado -> rowCount());
             
             if ($resultado -> rowCount() > 0) {
@@ -38,9 +30,17 @@
                             <div>
                                 <a class="nom" href="./pag/user.php?id='.$fila['user_id'].'">'.$fila['nombre'].'</a>
                                 <p class="txt">'.$fila['contenido'].'</p>
+                                <div>likes:2</div>
                             </div>
                         </div>
-                        <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                        <div class="ptos">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                            <div class="popUp">
+                                <a href="./theme/eliminarSeguidor.php?id='.$fila['user_id'].'&loc=index.php">
+                                    <p>Dejar de seguir a '.$fila['nombre'].'</p>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>';
                 }
@@ -55,7 +55,6 @@
                                 <a href="./pag/search.php" style="font-size: large; text-decoration:underline;">Buscar amigos</a>
                             </div>
                         </div>
-                        <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
                     </div>
                 </div>';
             }

@@ -1,11 +1,35 @@
 <?php 
     session_start();
+    require_once('../theme/database.php');
 
     /*Añadir el boton del panel de administración*/
     function verAdmin(){
         if ($_SESSION['admin']) {
-            echo '<a href="./pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+            echo '<a href="./admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
         }
+    }
+
+    function mostrarBusquedas(){
+        $database = new Database();
+        $conexion = $database -> conectar();
+
+        $resultado = $conexion->query('select id, nombre_usuario from usuarios');
+
+        if ($resultado->rowCount() > 0) {
+            while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
+                if ($_SESSION['id_usuario_validado'] == $fila['id']) {
+                    echo '<a class="busqueda" href="./user.php">
+                        <p>'.$fila['nombre_usuario'].'</p>
+                    </a>';
+                }else{
+                    echo '<a class="busqueda" href="./user.php?id='.$fila['id'].'">
+                        <p>'.$fila['nombre_usuario'].'</p>
+                    </a>';
+                }
+                
+            }
+        }
+        
     }
 ?>
 <!DOCTYPE html>
@@ -17,7 +41,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/style-responsive.css">
-    <title>Mango_Search</title>
+    <title>Mango</title>
     <link rel="icon" type="image/png" href="../images/logo.png">
 </head>
 <body>
@@ -40,17 +64,20 @@
     </header>
     <main>
         <div id="form-search">
-            <form method="POST" action="./busqueda.php">
+            <form>
                 <label>
-                    <input type="text" name="titulo" placeholder="Buscar...">
-                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input id="buscador" type="text" name="titulo" placeholder="Buscar..." onkeyup="filtro()">
+                    <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </label>
             </form>
+            <?php 
+                mostrarBusquedas();
+            ?>
         </div>
     </main>
 </body>
 <script src="../js/app.js"></script>
-<script src="../js/users.js"></script>
+<script src="../js/search.js"></script>
 <script src="../icons/fontawesome.js"></script>
 
 </html>

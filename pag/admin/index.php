@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="../../css/style-responsive.css">
     <title>Mango_Admin</title>
-    <link rel="icon" type="image/png" href="./images/logo.png">
+    <link rel="icon" type="image/png" href="../../images/logo.png">
 </head>
 <body>
     <header>
@@ -27,9 +27,6 @@
         <div class="container">
             <a class="tarjeta" href="../CRUDs/usuarios/index.php">
                 <p>Usuarios</p>
-            </a>
-            <a class="tarjeta" href="../CRUDs/usuarios_has_usuarios/index.php" style="font-size: 25px;">
-                <p>Usuarios_has_Usuarios</p>
             </a>
             <a class="tarjeta" href="../CRUDs/posts/index.php">
                 <p>Posts</p>

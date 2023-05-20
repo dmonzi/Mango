@@ -89,6 +89,10 @@ a {
     margin-right: 20px;
 }
 
+.fot-txt div {
+    padding-bottom: 15px;
+}
+
 .nom {
     font-size: 17px;
 }
@@ -326,7 +330,7 @@ a {
 }
 
 #contador {
-    width: 15%;
+    width: 10%;
 }
 
 #contador div {
@@ -358,6 +362,11 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+#form-search form {
+    margin-bottom: 5px;
 }
 
 #form-search form label {
@@ -397,6 +406,23 @@ input[placeholder*=Buscar] {
     font-size: 16px;
 }
 
+#form-search a{
+    display: none;
+    text-align: center;
+    width: 400px;
+    background-color: #e9dc87;
+    transition: all 0.5s;
+}
+
+#form-search a:nth-child(even){
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#form-search a p{
+    margin: 5px 0 5px 0;
+}
+
 /*fin busqueda*/
 /*añadir tweet*/
 #plus {
@@ -427,8 +453,8 @@ input[placeholder*=Buscar] {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 15vw;
-    height: 15vw;
+    width: 10vw;
+    height: 10vw;
     font-size: 30px;
     color: #f8efe9;
     transition: all 1s;

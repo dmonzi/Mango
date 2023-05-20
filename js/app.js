@@ -31,21 +31,21 @@ function addPopUp(array){
         //Aqui lo que hago es crear los elementos para cada post
 
         //Un div con la clase popUp que es el contenedor
-        popUpContainer=document.createElement('div');
-        popUpContainer.classList.add('popUp');
+        //popUpContainer=document.createElement('div');
+        //popUpContainer.classList.add('popUp');
 
         //Un enlace que es el contenedor del texto
-        popUpContentA=document.createElement('a');
-        popUpContentA.setAttribute('href','#');
+        //popUpContentA=document.createElement('a');
+        //popUpContentA.setAttribute('href','#');
 
         //El texto en sí
-        popUpContent=document.createElement('p');
-        popUpContent.textContent='Seguir a @nom_usr';
+        //popUpContent=document.createElement('p');
+        //popUpContent.textContent='Seguir a @nom_usr';
 
         //Vamos metiendo en el orden correcto el p dentro del a y este a dentro del div
-        popUpContentA.appendChild(popUpContent);
-        popUpContainer.appendChild(popUpContentA);
-        puntosTweet.appendChild(popUpContainer);
+        //popUpContentA.appendChild(popUpContent);
+        //popUpContainer.appendChild(popUpContentA);
+        //puntosTweet.appendChild(popUpContainer);
 
         //Pongo a escucha del evento click a todos los elementos
         //con la clase ptos, que son los tres puntos que deben 

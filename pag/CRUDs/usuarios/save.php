@@ -16,7 +16,7 @@
             $database = new Database();
             $conexion = $database -> conectar();
 
-            $sql = "insert into usuarios (nombre, nombre_usuario, email) values ('".$_POST['nombre']."', '".$_POST['nombre_usuario']."', '".$_POST['email']."')";
+            $sql = "insert into usuarios (nombre, nombre_usuario, email, passwd) values ('".$_POST['nombre']."', '".$_POST['nombre_usuario']."', '".$_POST['email']."', '".$_POST['contraseña']."')";
 
             if($conexion->query($sql)){
                 header("Location: ./index.php");

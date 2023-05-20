@@ -16,22 +16,15 @@
 
             if ($resultado == 0) {
                 //no le sigues
-                $boton = '<form id="" action="../theme/añadirSeguidor.php?id='.$id.'" method="POST"><input type="submit" name="btn-eguir" value="Seguir"></form>';
+                $boton = '<a href="../theme/añadirSeguidor.php?id='.$id.'"><p>Seguir</p></a>';
             }else{
                 // le sigues
-                $boton = "";
+                $boton = '<a href="../theme/eliminarSeguidor.php?id='.$id.'&loc=pag/user.php?id='.$id.'"><p>Dejar de Seguir</p></a>';
             }
             
-        }else if (isset($_SESSION['usuario_validado'])) {
-            $resultado = $conexion->query("select id from usuarios where nombre_usuario='".$_SESSION['usuario_validado']."'");
-            // $boton = '<a href="../theme/cerrar_sesion.php"><p>Cerrar Sesión</p></a>';
-            $boton = '<form id="" action="../theme/cerrar_sesion.php" method="POST"><input type="submit" name="btn-cerrarSesion" value="Cerrar Sesión"></form>';
-            // var_dump($resultado);
-            if ($resultado -> rowCount() > 0) {
-                $id = $resultado->fetch(PDO::FETCH_ASSOC)['id'];
-            }else {
-                $id = -1;
-            } 
+        }else if (isset($_SESSION['id_usuario_validado'])) {
+            $boton = '<a href="../theme/cerrar_sesion.php"><p>Cerrar Sesión</p></a>';
+            $id = $_SESSION['id_usuario_validado']; 
         }else{
             header("Location: login.php");
         }
@@ -51,7 +44,7 @@
             $seguidores = $conexion->query($sql)->fetch(PDO::FETCH_ASSOC)['count(*)'];
 
             // Recoger los posts
-            $sql = "select contenido from posts where usuario_id = ". $id;
+            $sql = "select contenido from posts where usuario_id = ". $id . " order by hora desc";
             $posts = $conexion->query($sql);
 
             // Imprimir los resultados
@@ -78,7 +71,7 @@
                                 <div class="fot-txt">
                                     <img src="../images/'.$foto.'" alt="fot_usr">
                                     <div>
-                                        <a class="nom" href="./user.php?id='.$id.'">'.$nombre.'</a>
+                                        <a class="nom" href="./user.php">'.$nombre.'</a>
                                         <p class="txt">'.$fila['contenido'].'</p>
                                     </div>
                                 </div>
@@ -86,6 +79,19 @@
                             </div>
                         </div>';
                 }
+            }else if (!isset($_GET['id'])){
+                echo '<div class="globo">
+                    <div class="globContent">
+                        <div class="fot-txt">
+                            <img src="../images/logo.png" alt="fot_usr">
+                            <div>
+                                <p class="nom">Mango</p>
+                                <p class="txt">Aún no tienes ningun post, escribe tu primer post para compartirlo con tus amigos</p>
+                                <a href="./upload.php" style="font-size: large; text-decoration:underline;">Escríbelo aquí</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
             }else {
                 echo '<div class="globo">
                     <div class="globContent">
@@ -93,11 +99,9 @@
                             <img src="../images/logo.png" alt="fot_usr">
                             <div>
                                 <p class="nom">Mango</p>
-                                <p class="txt">Aun no tienes ningun post, escribe tu primer post para compartirlo con tus amigos</p>
-                                <a href="./upload.php" style="font-size: large; text-decoration:underline;">Escríbelo aquí</a>
+                                <p class="txt">Aún no tiene ningun post</p>
                             </div>
                         </div>
-                        <div class="ptos"><i class="fa-solid fa-ellipsis-vertical"></i></div>
                     </div>
                 </div>';
             }
@@ -110,7 +114,7 @@
     /*Añadir el boton del panel de administración*/
     function verAdmin(){
         if ($_SESSION['admin']) {
-            echo '<a href="./pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+            echo '<a href="./admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
         }
     }
 ?>
@@ -123,7 +127,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/style-responsive.css">
-    <title>Mango_User</title>
+    <title>Mango</title>
     <link rel="icon" type="image/png" href="../images/logo.png">
 
 </head>

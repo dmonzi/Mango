@@ -49,7 +49,7 @@
                                     $_SESSION['id_usuario_validado'] = $idBD;
                                     header("Location: ../index.php");
                                 }else{
-                                    echo "<p>Contraseña incorrecta.</p>";
+                                    echo "<p>Contraseña o usuario incorrecto.</p>";
                                 }
                                 // if(password_verify($contraseña, $contraseña_crypt)){
                                 //     echo "<p>Bienvenido, ".$usuarioBD."!</p>";

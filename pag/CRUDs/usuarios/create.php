@@ -40,6 +40,7 @@
             <input placeholder="nombre" type="text" name="nombre">
             <input placeholder="nombre_usuario" type="text" name="nombre_usuario">
             <input placeholder="email" type="text" name="email">
+            <input placeholder="contraseña" type="text" name="contraseña">
             <input type="submit" name="iniciar">
         </form>
     </main>

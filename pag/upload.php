@@ -1,8 +1,5 @@
 <?php
 session_start();
-require_once('../theme/database.php');
-
-$database = new Database();
 
 /*Añadir el boton del panel de administración*/
 function verAdmin(){
@@ -43,28 +40,11 @@ function verAdmin(){
     <main>
         <div class="principal">
             <h1>Crea tu nuevo post</h1>
-            <form id="contenidoTweet" method="POST">
-                <textarea name="contenido" cols="100" rows="10" placeholder="Ecribe aquí!"></textarea>
+            <form id="contenidoTweet" method="POST" action="../theme/guardarPost.php" enctype="multipart/form-data">
+                <textarea name="contenido" cols="100" rows="10" placeholder="Ecribe aquí!" require></textarea>
                 <input type="submit" name="publicar" value="Publicar">
-                <?php
-                        
-                    $conexion = $database -> conectar();
-                    $query="SELECT id FROM usuarios WHERE nombre_usuario='".$_SESSION['usuario_validado']."'";
-                    $resultado=$conexion->query($query);
-                    
-                    if(isset($_POST['publicar'])){
-                        $query="INSERT INTO posts 
-                        (id, hora, contenido, usuario_id) 
-                        VALUES (NULL, CURRENT_TIMESTAMP,'".$_POST['contenido']."', ".$_SESSION['id_usuario_validado'].")";
-                        //lo tengo que almacenar en una variable para poder usar el row count
-                        $resultadoQuery=$conexion->query($query);
-                        //Evaluo cuantas filas han sido afectadas con ese insert
-                        if($resultadoQuery->rowCount()>0){
-                            header("Location: user.php");
-                        }
-                        
-                    }
-                ?>
+                <label for="foto-post">Añadir una imagen: </label>
+                <input type="file" id="foto-post" name="foto" accept=".png, .jpeg, .jpg">
             </form>
         </div>
     </main>

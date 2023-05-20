@@ -1,7 +1,7 @@
 <?php
 
     class Database{
-        public function conectar(){
+        public static function conectar(){
             $driver="mysql";
             $host="localhost";
             $port="3306";
@@ -44,6 +44,16 @@
             } catch (PDOException $e) {
                 echo 'Falló la conexión ' . $e->getMessage();
             }
+        }
+
+        public function getLikesPost($idPost){
+            $numLikes=0;
+
+            $sql="SELECT COUNT(*) FROM likes WHERE id_post=".$idPost." GROUP BY id_post";
+
+            print $sql;
+
+            $resultado = self::conectar()->query($sql)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
         }
     }
 ?>
