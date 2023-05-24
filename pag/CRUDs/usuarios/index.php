@@ -36,7 +36,7 @@
     /*Añadir el boton del panel de administración*/
     function verAdmin(){
         if ($_SESSION['admin']) {
-            echo '<a href="./pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+            echo '<a href="../../../pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
         }
     }
 ?>
@@ -62,7 +62,7 @@
                 </li>
                 <li><a href="#"><img src="../../../images/logo3.png" alt=""></a></li>
                 <li id="last-li">
-                    <a href="../../user.php"><i class="fa-solid fa-user"></i></a>
+                    <a href="../../profile.php"><i class="fa-solid fa-user"></i></a>
                     <?php 
                         verAdmin();
                     ?>

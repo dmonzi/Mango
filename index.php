@@ -1,18 +1,17 @@
-<?php 
+<?php
 
     require_once('theme\database.php');
 
     session_start();
-    // var_dump($_SESSION['usuario_validado']);
-     
+
     function mostrarPosts(){
-        $database = new Database();
-        $conexion = $database -> conectar();
+        $database=new Database();
+        $conexion=$database->conectar();
 
         if (isset($_SESSION['id_usuario_validado'])) {
-            $id = $_SESSION['id_usuario_validado'];
+            $id=$_SESSION['id_usuario_validado'];
         }else{
-            header("Location: pag/login.php");
+            header("Location: ./pag/login.php");
         }
 
         if (isset($id)) {
@@ -30,7 +29,10 @@
                             <div>
                                 <a class="nom" href="./pag/user.php?id='.$fila['user_id'].'">'.$fila['nombre'].'</a>
                                 <p class="txt">'.$fila['contenido'].'</p>
-                                <div>likes:2</div>
+                                <div class="likes">'.
+                                    '<i id="id" class="fa-solid fa-heart heart '.verColor($fila['id']).'" onclick="insertarDatos('.$fila['id'].','.$_SESSION['id_usuario_validado'].',\'./theme/addLike.php\')">'.Database::getLikesPost($fila['id']).
+                                    '</i>
+                                </div>
                             </div>
                         </div>
                         <div class="ptos">
@@ -51,7 +53,7 @@
                             <img src="./images/logo.png" alt="fot_usr">
                             <div>
                                 <p class="nom">Mango</p>
-                                <p class="txt">Aun no sigues a nadie, sigue a alguien para ver sus posts</p>
+                                <p class="txt">Aún no sigues a nadie, sigue a alguien para ver sus posts</p>
                                 <a href="./pag/search.php" style="font-size: large; text-decoration:underline;">Buscar amigos</a>
                             </div>
                         </div>
@@ -79,6 +81,20 @@
                 $_SESSION['admin'] = true;
             }
         }
+    }
+
+    function verColor($postId){
+        $database = new Database();
+        $conexion = $database -> conectar();
+        
+        $resultado = $conexion->query("select count(*) from likes where id_usuario=".$_SESSION['id_usuario_validado']." && id_post=".$postId)->fetch(PDO::FETCH_ASSOC)['count(*)'];
+
+        if (Database::usuarioHaDadoLike($_SESSION['id_usuario_validado'],$postId)) {
+            return "heart-red";
+        }else{
+            return "heart-black";
+        }
+
     }
 
     /*Añadir el boton del panel de administración*/
@@ -114,10 +130,15 @@
                 </li>
                 <li><a href="#"><img src="./images/logo3.png" alt=""></a></li>
                 <li id="last-li">
-                    <a href="./pag/user.php"><i class="fa-solid fa-user"></i></a>
+                    <a id="menu" onclick="mostrarMenu()"><i class="fa-solid fa-user"></i></a>
                     <?php 
                         verAdmin();
                     ?>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="./pag/profile.php"><i class="fas fa-user"></i> Ver perfil</a>
+                        <a class="dropdown-item" href="./pag/settings.php"><i class="fas fa-cog"></i> Ajustes</a>
+                        <a class="dropdown-item" href="./theme/cerrar_sesion.php"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -133,6 +154,6 @@
     </main>
 </body>
 <script src="js/app.js"></script>
-<script src="js/users.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </html>

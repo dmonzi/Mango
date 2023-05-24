@@ -24,7 +24,6 @@
             echo '<tr id="'.$fila['id'].'"><td>'.$fila['id'].
             '</td><td>'.$fila['nombre'].
             '</td><td class="action-btn">
-            <a href="./edit.php?id='.$fila['id'].'"><i class="fa-regular fa-pen-to-square"></i></a>
             <a href="./delete.php?id='.$fila['id'].'"><i class="fa-solid fa-trash-can"></i></a></td></div>';
         }
 
@@ -35,7 +34,7 @@
     /*Añadir el boton del panel de administración*/
     function verAdmin(){
         if ($_SESSION['admin']) {
-            echo '<a href="./pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+            echo '<a href="../../../pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
         }
     }
 ?>
@@ -61,7 +60,7 @@
                 </li>
                 <li><a href="#"><img src="../../../images/logo3.png" alt=""></a></li>
                 <li id="last-li">
-                    <a href="../../user.php"><i class="fa-solid fa-user"></i></a>
+                    <a href="../../profile.php"><i class="fa-solid fa-user"></i></a>
                     <?php 
                         verAdmin();
                     ?>

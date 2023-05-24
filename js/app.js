@@ -1,3 +1,5 @@
+let hearts=document.getElementsByClassName('heart');
+let menu=false;
 /* Signup ----------------------------------------------*/
 
 function validarContraseña() {
@@ -67,8 +69,66 @@ function addPopUp(array){
     }
 }
 
+function like(heart){
+    let cantidadLikes;
+    heart.textContent.trim();
+    /**Con el elemento pasado por parámetro se evalua las clases que tenga */
+    //Si tiene la clase que le da el color negro se le quita esa clase y se le añade la que le da color rojo
+    if(heart.classList.contains('heart-black')){
+        heart.classList.toggle('heart-black');
+        heart.classList.add('heart-red');
+        heart.textContent++;
+        /*Y si no tiene la clase que le da el color rojo si no que tiene la que le da el color negro
+        se le quita la clase del color negro y se le añade la del color rojo*/
+    }else if(heart.classList.contains('heart-red')){
+        heart.classList.toggle('heart-red');
+        heart.classList.add('heart-black');
+        heart.textContent--;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function(event){
     let puntos=document.getElementsByClassName('ptos');
     addPopUp(puntos);
-    document.querySelector('i[class*=fa-solid]')
 });
+
+for(heart of hearts){
+    
+    heart.addEventListener("click", function(event){
+        /*por cada click que se haga se pasa por parámetro el elemento que ha desencadenado la acción
+        y se llama a la función like*/
+
+        like(event.target);
+    });
+    
+}
+
+function mostrarMenu() {
+    let dropdown = document.getElementsByClassName('dropdown-menu');
+    if (menu) {
+        dropdown[0].style.display="none";
+        menu = false;
+    } else {
+        dropdown[0].style.display="block";
+        menu = true;
+    }
+}
+
+function insertarDatos(idPost, idUsuario, ruta) {
+
+    console.log(idPost+" "+idUsuario+" "+ ruta);
+    
+    $.ajax({
+      url: ruta,
+      method: 'POST',
+      data: { idPost: idPost, idUsuario: idUsuario },
+      success: function(response) {
+        console.log(response);
+        // Aquí puedes realizar acciones adicionales después de la inserción exitosa
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+        // Aquí puedes manejar los errores en caso de que ocurra algún problema durante la inserción
+      }
+    });
+  }

@@ -31,7 +31,7 @@
     //     return $conexion;
     // }
 
-        public function getNumRows($sql){
+        public static function getNumRows($sql){
             $resultado=self::conectar()->query($sql);
             $numRows=$resultado->rowCount();
             return $numRows;
@@ -46,14 +46,57 @@
             }
         }
 
-        public function getLikesPost($idPost){
+        public static function getLikesPost($idPost){
             $numLikes=0;
 
-            $sql="SELECT COUNT(*) FROM likes WHERE id_post=".$idPost." GROUP BY id_post";
+            //$sql="SELECT COUNT(*) FROM likes WHERE id_post=".$idPost." GROUP BY id_post";
+            $sql="SELECT * FROM likes WHERE id_post=".$idPost;
 
-            print $sql;
+            $resultado = self::conectar()->query($sql)->rowCount();
 
-            $resultado = self::conectar()->query($sql)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
+            return $resultado;
+
+            //return $numLikes;
         }
+
+        public static function usuarioHaDadoLike($idUsuario, $idPost){
+
+            $hasLike=false;
+
+            $query="SELECT COUNT(*) FROM likes WHERE id_usuario=".$idUsuario." AND id_post=".$idPost;
+
+            $like = Database::conectar()->query($query)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
+
+            //$resultado = Database::conectar()->query($query);
+            if($like>0){
+                $hasLike=true;
+            }else{
+                $hasLike=false;
+            }
+            return $hasLike;
+            
+        }
+
+        public static function vecesLikesUsuarioPost($idUsuario,$idPost){
+
+            $query="SELECT COUNT(*) FROM likes WHERE id_usuario=".$idUsuario." AND id_post=".$idPost;
+
+            $resultado=Database::conectar()->query($query)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
+
+            return $resultado;
+
+        }
+
+        public static function verFotoPost($idPost){
+
+            $query="select ruta_foto from posts where id = ".$idPost;
+            
+            $resultado = Database::conectar()->query($query)->fetch(PDO::FETCH_ASSOC)['ruta_foto'];
+       
+            if($resultado != null){
+                return '<div class="foto-post"><img src="../images/'.$resultado.'"></div>';
+            }
+        }
+
     }
 ?>

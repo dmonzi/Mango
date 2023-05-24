@@ -1,5 +1,5 @@
 <?php
-    require_once('../theme\database.php');
+    require_once('../theme/database.php');
     
 ?>
 <!DOCTYPE html>
@@ -30,25 +30,51 @@
                     $database = new Database();
 
                     if(isset($_POST['iniciar'])){
-                        $conexion = $database -> conectar();
+                        // $conexion = $database -> conectar();
+                        // $query="SELECT nombre_usuario, email FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'";
 
-                        // $contraseña_crypt = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
-                        $sql = "INSERT INTO usuarios (id, nombre, nombre_usuario, email, passwd) 
-                        VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."')";
-                        $resultado = $conexion->query($sql);
-                        header("Location: ../index.php");
-                        session_start();
-                        $_SESSION['usuario_validado']=$_POST['nombre'];
+                        // $resultado=$conexion->query($query);
+                        // $numRows = $resultado->rowCount();
+                        // $fila=$resultado->fetch(PDO::FETCH_ASSOC);
+                        // $nombreUsuario=$fila['nombre_usuario'];
+                        // $emailUsuario=$fila['email'];
+
+                        if(Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'")>0 &&
+                        Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE email='".$_POST['email']."'")>0){
+                            print "El usuario y el correo ya están en uso, pruebe con otros";
+                        }else if(Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE email='".$_POST['email']."'")>0){
+                            print "El correo ya está en uso, pruebe con otro correo";
+                        }else if(Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'")>0){
+                            print "El usuario ya existe, pruebe con otro nombre";
+                        }else{
+                            //$contraseña_crypt = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
+                            $sql = "INSERT INTO usuarios (id, nombre, nombre_usuario, email, passwd) 
+                            VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."')";
+                            $resultado = Database::conectar()->query($sql);
+                            $query="SELECT id FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'";
+
+                            $resultado=Database::conectar()->query($query);
+                            
+                            $idUsuario=$resultado->fetch(PDO::FETCH_ASSOC)['id'];
+                            $resultado=Database::conectar()->query($query);
+                            
+                            session_start();
+                            $_SESSION['usuario_validado']=$_POST['nombre'];
+                            $_SESSION['id_usuario_validado']=$idUsuario;
+
+                            header("Location: ../index.php");
+                        }
+                        
                         
                     }
                 ?>
                 <span id="alertPasswd"></span>
-                <div class="terms">
+                <!-- <div class="terms">
                     <input id="check-term" type="checkbox" required style="width: 3vw;">
                     <p>Acepto los <a href="#"> terminos y condiciones</a></p>
-                </div>
+                </div> -->
             </form>
-            <p>O si tienes cuenta, <a href="./login.html"><span class="enlace-usuario">inicia sesión</span></a></p>
+            <p>O si tienes cuenta, <a href="./login.php"><span class="enlace-usuario">inicia sesión</span></a></p>
         </div>
     </main>
 </body>

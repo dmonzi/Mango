@@ -32,10 +32,14 @@
         bottom: 10px;
     }
     #top-usr {
-        width: 85%;
+        width: 75%;
     }
     #login-form{
         width: 75vw;        
+    }
+    .tarjeta {
+        width: 35vw;
+        margin: 10px 0;
     }
 }
 

@@ -27,7 +27,7 @@
                 </li>
                 <li><a href="#"><img src="../../../images/logo3.png" alt=""></a></li>
                 <li id="last-li">
-                    <a href="../../user.php"><i class="fa-solid fa-user"></i></a>
+                    <a href="../../profile.php"><i class="fa-solid fa-user"></i></a>
                     <?php 
                         verAdmin();
                     ?>

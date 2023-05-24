@@ -1,13 +1,5 @@
 <?php 
-    session_start();
     require_once('../theme/database.php');
-
-    /*Añadir el boton del panel de administración*/
-    function verAdmin(){
-        if ($_SESSION['admin']) {
-            echo '<a href="./admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
-        }
-    }
 
     function mostrarBusquedas(){
         $database = new Database();
@@ -46,24 +38,14 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul id="list-nav">
-                <li id="home-search">
-                    <div><a href="../index.php"><i class="fa-solid fa-house"></i></a></div>
-                    <div id="nav-search"><a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a></div>
-                </li>
-                <li><a href="#"><img src="../images/logo3.png" alt=""></a></li>
-                <li id="last-li">
-                    <a href="user.php"><i class="fa-solid fa-user"></i></a>
-                    <?php 
-                        verAdmin();
-                    ?>
-                </li>
-            </ul>
-        </nav>
+        <!-- nav insertado con php -->
+        <?php 
+            include('../theme/nav.php')
+        ?>
     </header>
     <main>
         <div id="form-search">
+            <h2>¡Busca un usuario!</h2>
             <form>
                 <label>
                     <input id="buscador" type="text" name="titulo" placeholder="Buscar..." onkeyup="filtro()">
