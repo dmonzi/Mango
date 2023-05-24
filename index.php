@@ -1,5 +1,7 @@
 <?php
 
+    ob_start();
+
     require_once('theme\database.php');
 
     session_start();
@@ -8,13 +10,11 @@
         $database=new Database();
         $conexion=$database->conectar();
 
-        if (isset($_SESSION['id_usuario_validado'])) {
+        if (isset($_SESSION['id_usuario_validado'])){
             $id=$_SESSION['id_usuario_validado'];
-        }else{
-            header("Location: ./pag/login.php");
-        }
+        }else{header("Location: pag/login.php");}
 
-        if (isset($id)) {
+        if (isset($id)){
             
             $resultado = $conexion->query("select * from Usuario_Posts where user_id in (select usuario_seguido from usuario_has_usuario where usuario_seguidor = ".$id.") order by hora desc");
             // var_dump($resultado -> rowCount());

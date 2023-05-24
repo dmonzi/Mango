@@ -22,7 +22,7 @@
         $conexion = $database -> conectar();
 
         if (isset($_SESSION['id_usuario_validado'])) {
-            $boton = '<a href="../theme/cerrar_sesion.php"><p>Cerrar Sesión</p></a>';
+            $boton = '';
             $id = $_SESSION['id_usuario_validado'];
         }else{
             header("Location: login.php");

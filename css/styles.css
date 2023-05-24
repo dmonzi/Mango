@@ -429,8 +429,8 @@ input[placeholder*=Buscar] {
     transition: all 0.5s;
 }
 
-#form-search a:nth-child(even){
-    border-top: 1px solid black;
+#form-search a{
+    /* border-top: 1px solid black; */
     border-bottom: 1px solid black;
 }
 
