@@ -23,21 +23,13 @@
             <form method="POST">
                 <input type="text" name="nombre" placeholder="Nombre" required><br><br>
                 <input type="text" name="nombreUsuario" placeholder="Nombre de Usuario" required><br><br>
-                <input type="text" name="email" placeholder="Email" required><br><br>
+                <input type="email" name="email" placeholder="Email" required><br><br>
                 <input id="passwd" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
                 <input type="submit" name="iniciar" value="Crear Cuenta">
                 <?php
                     $database = new Database();
 
                     if(isset($_POST['iniciar'])){
-                        // $conexion = $database -> conectar();
-                        // $query="SELECT nombre_usuario, email FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'";
-
-                        // $resultado=$conexion->query($query);
-                        // $numRows = $resultado->rowCount();
-                        // $fila=$resultado->fetch(PDO::FETCH_ASSOC);
-                        // $nombreUsuario=$fila['nombre_usuario'];
-                        // $emailUsuario=$fila['email'];
 
                         if(Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'")>0 &&
                         Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE email='".$_POST['email']."'")>0){
@@ -64,7 +56,6 @@
 
                             header("Location: ../index.php");
                         }
-                        
                         
                     }
                 ?>

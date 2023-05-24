@@ -35,8 +35,12 @@
 
     /*Añadir el boton del panel de administración*/
     function verAdmin(){
-        if ($_SESSION['admin']) {
-            echo '<a href="../../../pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+        if (isset($_SESSION['id_usuario_validado'])) {
+            if ($_SESSION['admin']) {
+                echo '<a href="../../../pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>pepep';
+            }
+        }else{
+            header("Location: ../../login.php");
         }
     }
 ?>

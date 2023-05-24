@@ -51,14 +51,6 @@
                                 }else{
                                     echo "<p>Contraseña o usuario incorrecto.</p>";
                                 }
-                                // if(password_verify($contraseña, $contraseña_crypt)){
-                                //     echo "<p>Bienvenido, ".$usuarioBD."!</p>";
-                                //     $_SESSION['usuario_validado'] = $usuarioBD;
-                                //     header("Location: ../index.php");
-                                //     print_r(var_dump($_SESSION['usuario_validado']));
-                                // }else{
-                                //     echo "<p>Contraseña incorrecta.</p>";
-                                // }
                             }
                         }
                     ?>

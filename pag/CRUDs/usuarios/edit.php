@@ -16,7 +16,7 @@
                     echo '<form id="update-main" action="./update.php?id='.$id.'" method="POST">
                     <input placeholder="nombre" type="text" name="nombre" value="'.$fila['nombre'].'">
                     <input placeholder="nombre_usuario" type="text" name="nombre_usuario" value="'.$fila['nombre_usuario'].'">
-                    <input placeholder="email" type="text" name="email" value="'.$fila['email'].'">
+                    <input placeholder="email" type="email" name="email" value="'.$fila['email'].'">
                     <input placeholder="foto_perfil" type="text" name="foto_perfil" value="'.$fila['foto_perfil'].'">
                     <input type="submit" name="iniciar">
                     </form>';
