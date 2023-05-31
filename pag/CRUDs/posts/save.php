@@ -16,7 +16,7 @@
             $database = new Database();
             $conexion = $database -> conectar();
 
-            $sql = "insert into posts (contenido, usuario_id) values ('".$_POST['contenido']."', '".$_POST['usuario_id']."')";
+            $sql = "insert into 13_posts (contenido, usuario_id) values ('".$_POST['contenido']."', '".$_POST['usuario_id']."')";
 
             if($conexion->query($sql)){
                 header("Location: ./index.php");

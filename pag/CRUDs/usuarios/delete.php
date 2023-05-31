@@ -8,13 +8,13 @@
 
         if(isset($_GET['id'])){
             $id = $_GET['id'];
-            $sql = "delete from usuario_has_usuario where usuario_seguidor = ".$id." or usuario_seguido =".$id;
+            $sql = "delete from 13_usuario_has_usuario where usuario_seguidor = ".$id." or usuario_seguido =".$id;
             $conexion->query($sql);
 
-            $sql = "delete from posts where usuario_id = ". $id;
+            $sql = "delete from 13_posts where usuario_id = ". $id;
             $conexion->query($sql);
 
-            $sql = "delete from usuarios where id = " . $id;
+            $sql = "delete from 13_usuarios where id = " . $id;
 
             if($conexion->query($sql)){
                 echo '<p>Usuario elimniado con éxito<br></p><a href="./index.php">Volver</a>';

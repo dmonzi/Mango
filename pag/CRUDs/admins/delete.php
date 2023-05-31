@@ -9,7 +9,7 @@
         if(isset($_GET['id'])){
             $id = $_GET['id'];
 
-            $sql = "delete from admins where id = ". $id;
+            $sql = "delete from 13_admins where id = ". $id;
 
             if($conexion->query($sql)){
                 echo '<p>Admin elimniado con éxito<br></p><a href="./index.php">Volver</a>';

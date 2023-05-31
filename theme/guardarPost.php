@@ -23,7 +23,7 @@
     // }
 
     if(isset($_POST['publicar'])){
-        $query="INSERT INTO posts (id, hora, contenido, usuario_id, ruta_foto) VALUES (NULL, CURRENT_TIMESTAMP,'".$_POST['contenido']."', ".$_SESSION['id_usuario_validado'].", '".$archivo['name']."')";
+        $query="INSERT INTO 13_posts (id, hora, contenido, usuario_id, ruta_foto) VALUES (NULL, CURRENT_TIMESTAMP,'".$_POST['contenido']."', ".$_SESSION['id_usuario_validado'].", '".$archivo['name']."')";
         //lo tengo que almacenar en una variable para poder usar el row count
         $resultadoQuery=$conexion->query($query);
         //Evaluo cuantas filas han sido afectadas con ese insert

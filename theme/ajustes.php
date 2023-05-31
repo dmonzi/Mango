@@ -8,7 +8,7 @@
     switch ($_GET['act']) {
         case 1:
             # usuario
-            $conexion->query('update usuarios set nombre="'.$_POST['nombre'].'", nombre_usuario="'.$_POST['nom_usr'].'", email="'.$_POST['email'].'" where id='.$_SESSION['id_usuario_validado']);
+            $conexion->query('update 13_usuarios set nombre="'.$_POST['nombre'].'", nombre_usuario="'.$_POST['nom_usr'].'", email="'.$_POST['email'].'" where id='.$_SESSION['id_usuario_validado']);
 
             header("Location: ../pag/settings.php");
 
@@ -16,9 +16,9 @@
         
         case 2:
             # contraseña
-            if ($conexion->query('select count(*) from usuarios where id='.$_SESSION['id_usuario_validado'].' && passwd="'.$_POST['old_pass'].'"')->fetch(PDO::FETCH_ASSOC)['count(*)'] > 0) {
+            if ($conexion->query('select count(*) from 13_usuarios where id='.$_SESSION['id_usuario_validado'].' && passwd="'.$_POST['old_pass'].'"')->fetch(PDO::FETCH_ASSOC)['count(*)'] > 0) {
                 if ($_POST['new_pass'] == $_POST['rep_pass']) {
-                    $conexion->query('update usuarios set passwd="'.$_POST['new_pass'].'" where id='.$_SESSION['id_usuario_validado']);
+                    $conexion->query('update 13_usuarios set passwd="'.$_POST['new_pass'].'" where id='.$_SESSION['id_usuario_validado']);
                     header("Location: ../pag/settings.php");
                 }else {
                     echo 'Las nuevas contraseñas no coinciden';
@@ -41,7 +41,7 @@
     
                 move_uploaded_file($archivo['tmp_name'], $ruta);
 
-                $query='update usuarios set foto_perfil="'.$archivo['name'].'" where id='.$_SESSION['id_usuario_validado'];
+                $query='update 13_usuarios set foto_perfil="'.$archivo['name'].'" where id='.$_SESSION['id_usuario_validado'];
                 print $query;
                 $conexion->query($query);
                     

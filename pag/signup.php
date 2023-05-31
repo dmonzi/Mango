@@ -31,19 +31,19 @@
 
                     if(isset($_POST['iniciar'])){
 
-                        if(Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'")>0 &&
-                        Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE email='".$_POST['email']."'")>0){
+                        if(Database::getNumRows("SELECT nombre_usuario, email FROM 13_usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'")>0 &&
+                        Database::getNumRows("SELECT nombre_usuario, email FROM 13_usuarios WHERE email='".$_POST['email']."'")>0){
                             print "El usuario y el correo ya están en uso, pruebe con otros";
-                        }else if(Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE email='".$_POST['email']."'")>0){
+                        }else if(Database::getNumRows("SELECT nombre_usuario, email FROM 13_usuarios WHERE email='".$_POST['email']."'")>0){
                             print "El correo ya está en uso, pruebe con otro correo";
-                        }else if(Database::getNumRows("SELECT nombre_usuario, email FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'")>0){
+                        }else if(Database::getNumRows("SELECT nombre_usuario, email FROM 13_usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'")>0){
                             print "El usuario ya existe, pruebe con otro nombre";
                         }else{
                             //$contraseña_crypt = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
-                            $sql = "INSERT INTO usuarios (id, nombre, nombre_usuario, email, passwd) 
+                            $sql = "INSERT INTO 13_usuarios (id, nombre, nombre_usuario, email, passwd) 
                             VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."')";
                             $resultado = Database::conectar()->query($sql);
-                            $query="SELECT id FROM usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'";
+                            $query="SELECT id FROM 13_usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'";
 
                             $resultado=Database::conectar()->query($query);
                             

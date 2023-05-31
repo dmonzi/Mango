@@ -5,7 +5,7 @@
         $database = new Database();
         $conexion = $database -> conectar();
         
-        $resultado = $conexion->query("select count(*) from likes where id_usuario=".$_SESSION['id_usuario_validado']." && id_post=".$postId)->fetch(PDO::FETCH_ASSOC)['count(*)'];
+        $resultado = $conexion->query("select count(*) from 13_likes where id_usuario=".$_SESSION['id_usuario_validado']." && id_post=".$postId)->fetch(PDO::FETCH_ASSOC)['count(*)'];
 
         if (Database::usuarioHaDadoLike($_SESSION['id_usuario_validado'],$postId)) {
             return "heart-red";
@@ -30,20 +30,20 @@
 
         if ($id != -1) {
             // Nombre de usuario
-            $sql = "select nombre_usuario, foto_perfil from usuarios where id = ". $id;
+            $sql = "select nombre_usuario, foto_perfil from 13_usuarios where id = ". $id;
             $resultado = $conexion->query($sql)->fetch(PDO::FETCH_ASSOC);
             $nombre = $resultado['nombre_usuario'];
             $foto = $resultado['foto_perfil'];
 
             // Contar los seguidores y los seguidos
-            $sql = "select count(*) from usuario_has_usuario where usuario_seguidor = ". $id;
+            $sql = "select count(*) from 13_usuario_has_usuario where usuario_seguidor = ". $id;
             $seguidos = $conexion->query($sql)->fetch(PDO::FETCH_ASSOC)['count(*)'];
             
-            $sql = "select count(*) from usuario_has_usuario where usuario_seguido = ". $id;
+            $sql = "select count(*) from 13_usuario_has_usuario where usuario_seguido = ". $id;
             $seguidores = $conexion->query($sql)->fetch(PDO::FETCH_ASSOC)['count(*)'];
 
             // Recoger los posts
-            $sql = "select * from Usuario_Posts where user_id=".$_SESSION['id_usuario_validado']." order by hora desc";
+            $sql = "select * from 13_Usuario_Posts where user_id=".$_SESSION['id_usuario_validado']." order by hora desc";
             $posts = $conexion->query($sql);
 
             // Imprimir los resultados

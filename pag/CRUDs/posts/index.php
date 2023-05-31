@@ -5,7 +5,7 @@
     function findPosts(){
         $database = new Database();
         $conexion = $database -> conectar();
-        $sql = 'select * from posts';
+        $sql = 'select * from 13_posts';
         $resultado = $conexion->query($sql);
         if($resultado != null){
             return $resultado;
@@ -21,7 +21,7 @@
 
         while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){
 
-            $nom_usr = $conexion->query("select nombre_usuario from usuarios where id = ".$fila['usuario_id'])->fetch(PDO::FETCH_ASSOC);
+            $nom_usr = $conexion->query("select nombre_usuario from 13_usuarios where id = ".$fila['usuario_id'])->fetch(PDO::FETCH_ASSOC);
 
             echo '<tr id="'.$fila['id'].'"><td>'.$fila['id'].
             '</td><td>'.$fila['hora'].
@@ -41,7 +41,7 @@
     function verAdmin(){
         if (isset($_SESSION['id_usuario_validado'])) {
             if ($_SESSION['admin']) {
-                echo '<a href="../../../pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>pepep';
+                echo '<a href="../../../pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
             }
         }else{
             header("Location: ../../login.php");

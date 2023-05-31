@@ -5,7 +5,7 @@
     function findUsr(){
         $database = new Database();
         $conexion = $database -> conectar();
-        $sql = 'select id, nombre, nombre_usuario, email, foto_perfil from usuarios';
+        $sql = 'select id, nombre, nombre_usuario, email, foto_perfil from 13_usuarios';
         $resultado = $conexion->query($sql);
         if($resultado != null){
             return $resultado;
@@ -37,7 +37,7 @@
     function verAdmin(){
         if (isset($_SESSION['id_usuario_validado'])) {
             if ($_SESSION['admin']) {
-                echo '<a href="../../../pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>pepep';
+                echo '<a href="../../../pag/admin/index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
             }
         }else{
             header("Location: ../../login.php");

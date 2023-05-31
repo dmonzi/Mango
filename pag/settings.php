@@ -6,7 +6,7 @@
         $database = new Database();
         $conexion = $database -> conectar();
 
-        $resultado = $conexion->query('select * from usuarios where id="'.$_SESSION['id_usuario_validado'].'"')->fetch(PDO::FETCH_ASSOC);
+        $resultado = $conexion->query('select * from 13_usuarios where id="'.$_SESSION['id_usuario_validado'].'"')->fetch(PDO::FETCH_ASSOC);
 
         echo '<input type="text" name="nombre" placeholder="Nombre" value="'.$resultado['nombre'].'">
                 <input type="text" name="nom_usr" placeholder="Nombre Usuario" value="'.$resultado['nombre_usuario'].'">

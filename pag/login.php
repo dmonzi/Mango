@@ -31,7 +31,7 @@
                             $contraseña = $_POST['passwd'];
                             $contraseña_crypt = password_hash($contraseña, PASSWORD_DEFAULT);
                             $conexion = $database -> conectar();
-                            $query="SELECT id, nombre_usuario, passwd FROM usuarios WHERE nombre_usuario='".$nombre."'";
+                            $query="SELECT id, nombre_usuario, passwd FROM 13_usuarios WHERE nombre_usuario='".$nombre."'";
                             $resultado=$conexion->query($query);
                             $numRows = $resultado->rowCount();
                             

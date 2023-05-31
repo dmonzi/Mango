@@ -21,7 +21,7 @@
                     $database = new Database();
                     $conexion = $database -> conectar();
 
-                    $sql = "update posts set hora='".$_POST['hora']."', contenido='".$_POST['contenido']."', usuario_id='".$_POST['usuario_id']."' where id=".$id;
+                    $sql = "update 13_posts set hora='".$_POST['hora']."', contenido='".$_POST['contenido']."', usuario_id='".$_POST['usuario_id']."' where id=".$id;
 
                     if($conexion->query($sql)){
                         header("Location: ./index.php");

@@ -2,11 +2,11 @@
     require_once('../theme\database.php');
 
     function verSeguidores(){
-        return 'select usuarios.nombre_usuario, usuario_has_usuario.usuario_seguidor from usuario_has_usuario inner join usuarios on usuarios.id = usuario_has_usuario.usuario_seguidor where usuario_has_usuario.usuario_seguido='.$_SESSION['id_usuario_validado'];
+        return 'select 13_usuarios.nombre_usuario, 13_usuario_has_usuario.usuario_seguidor from 13_usuario_has_usuario inner join usuarios on 13_usuarios.id = 13_usuario_has_usuario.usuario_seguidor where 13_usuario_has_usuario.usuario_seguido='.$_SESSION['id_usuario_validado'];
     }
 
     function verSeguidos(){
-        return 'select usuarios.nombre_usuario, usuario_has_usuario.usuario_seguido from usuario_has_usuario inner join usuarios on usuarios.id = usuario_has_usuario.usuario_seguido where usuario_has_usuario.usuario_seguidor='.$_SESSION['id_usuario_validado'];
+        return 'select 13_usuarios.nombre_usuario, 13_usuario_has_usuario.usuario_seguido from 13_usuario_has_usuario inner join 13_usuarios on usuarios.id = 13_usuario_has_usuario.usuario_seguido where 13_usuario_has_usuario.usuario_seguidor='.$_SESSION['id_usuario_validado'];
     }
 
     function verTabla(){

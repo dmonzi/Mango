@@ -9,7 +9,7 @@
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
-            $sql = "select * from posts where id = ".$id;
+            $sql = "select * from 13_posts where id = ".$id;
             $resultado = $conexion -> query($sql);
             if ($resultado) {
                 while ($fila = $resultado->fetch(PDO::FETCH_ASSOC)) {

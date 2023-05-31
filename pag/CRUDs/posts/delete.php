@@ -9,7 +9,7 @@
         if(isset($_GET['id'])){
             $id = $_GET['id'];
 
-            $sql = "delete from posts where id = ". $id;
+            $sql = "delete from 13_posts where id = ". $id;
 
             if($conexion->query($sql)){
                 echo '<p>Post elimniado con éxito<br></p><a href="./index.php">Volver</a>';

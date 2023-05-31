@@ -5,7 +5,7 @@
             $driver="mysql";
             $host="localhost";
             $port="3306";
-            $bd="mango";
+            $bd="13_mango";
             $user="root";
             $password="";
             $dsn="$driver:dbname=$bd;host=$host;port=$port";
@@ -40,7 +40,7 @@
         public function followUser($idSeguidor, $idSeguido){
             try {
                 $conexion=Database::conectar();
-                $conexion->query('insert into usuario_has_usuario (usuario_seguidor, usuario_seguido) values ('.$idSeguidor.', '.$idSeguido.')');
+                $conexion->query('insert into 13_usuario_has_usuario (usuario_seguidor, usuario_seguido) values ('.$idSeguidor.', '.$idSeguido.')');
             } catch (PDOException $e) {
                 echo 'Falló la conexión ' . $e->getMessage();
             }
@@ -50,7 +50,7 @@
             $numLikes=0;
 
             //$sql="SELECT COUNT(*) FROM likes WHERE id_post=".$idPost." GROUP BY id_post";
-            $sql="SELECT * FROM likes WHERE id_post=".$idPost;
+            $sql="SELECT * FROM 13_likes WHERE id_post=".$idPost;
 
             $resultado = self::conectar()->query($sql)->rowCount();
 
@@ -63,7 +63,7 @@
 
             $hasLike=false;
 
-            $query="SELECT COUNT(*) FROM likes WHERE id_usuario=".$idUsuario." AND id_post=".$idPost;
+            $query="SELECT COUNT(*) FROM 13_likes WHERE id_usuario=".$idUsuario." AND id_post=".$idPost;
 
             $like = Database::conectar()->query($query)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
 
@@ -79,7 +79,7 @@
 
         public static function vecesLikesUsuarioPost($idUsuario,$idPost){
 
-            $query="SELECT COUNT(*) FROM likes WHERE id_usuario=".$idUsuario." AND id_post=".$idPost;
+            $query="SELECT COUNT(*) FROM 13_likes WHERE id_usuario=".$idUsuario." AND id_post=".$idPost;
 
             $resultado=Database::conectar()->query($query)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
 
@@ -89,7 +89,7 @@
 
         public static function verFotoPost($idPost){
 
-            $query="select ruta_foto from posts where id = ".$idPost;
+            $query="select ruta_foto from 13_posts where id = ".$idPost;
             
             $resultado = Database::conectar()->query($query)->fetch(PDO::FETCH_ASSOC)['ruta_foto'];
        

@@ -5,7 +5,7 @@
         $database = new Database();
         $conexion = $database -> conectar();
 
-        $resultado = $conexion->query('select id, nombre_usuario from usuarios');
+        $resultado = $conexion->query('select id, nombre_usuario from 13_usuarios');
 
         if ($resultado->rowCount() > 0) {
             while($fila = $resultado->fetch(PDO::FETCH_ASSOC)){

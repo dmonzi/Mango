@@ -16,7 +16,7 @@
 
         if (isset($id)){
             
-            $resultado = $conexion->query("select * from Usuario_Posts where user_id in (select usuario_seguido from usuario_has_usuario where usuario_seguidor = ".$id.") order by hora desc");
+            $resultado = $conexion->query("select * from 13_Usuario_posts where user_id in (select usuario_seguido from 13_usuario_has_usuario where usuario_seguidor = ".$id.") order by hora desc");
             // var_dump($resultado -> rowCount());
             
             if ($resultado -> rowCount() > 0) {
@@ -25,7 +25,7 @@
                     echo '<div class="globo">
                     <div class="globContent">
                         <div class="fot-txt">
-                            <img src="./images/'.$conexion->query("select foto_perfil from usuarios where id='".$fila['user_id']."'")->fetch(PDO::FETCH_ASSOC)['foto_perfil'].'" alt="fot_usr">
+                            <img src="./images/'.$conexion->query("select foto_perfil from 13_usuarios where id='".$fila['user_id']."'")->fetch(PDO::FETCH_ASSOC)['foto_perfil'].'" alt="fot_usr">
                             <div>
                                 <a class="nom" href="./pag/user.php?id='.$fila['user_id'].'">'.$fila['nombre'].'</a>
                                 <p class="txt">'.$fila['contenido'].'</p>
@@ -73,7 +73,7 @@
         $_SESSION['admin'] = false;
 
         // var_dump($_SESSION);
-        $admins = $conexion->query("select usuario_id from admins");
+        $admins = $conexion->query("select usuario_id from 13_admins");
 
         while($fila = $admins->fetch(PDO::FETCH_ASSOC)){
             // var_dump($fila);
@@ -87,7 +87,7 @@
         $database = new Database();
         $conexion = $database -> conectar();
         
-        $resultado = $conexion->query("select count(*) from likes where id_usuario=".$_SESSION['id_usuario_validado']." && id_post=".$postId)->fetch(PDO::FETCH_ASSOC)['count(*)'];
+        $resultado = $conexion->query("select count(*) from 13_likes where id_usuario=".$_SESSION['id_usuario_validado']." && id_post=".$postId)->fetch(PDO::FETCH_ASSOC)['count(*)'];
 
         if (Database::usuarioHaDadoLike($_SESSION['id_usuario_validado'],$postId)) {
             return "heart-red";

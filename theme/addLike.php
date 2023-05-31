@@ -13,9 +13,9 @@
     // $idUsuario=1;
 
     if (Database::vecesLikesUsuarioPost($idUsuario,$idPost)==0) {
-        $query="INSERT INTO likes (id, id_usuario, id_post) VALUES (NULL, '".$idUsuario."', '".$idPost."')";
+        $query="INSERT INTO 13_likes (id, id_usuario, id_post) VALUES (NULL, '".$idUsuario."', '".$idPost."')";
     }else{
-        $query="DELETE FROM likes WHERE id_usuario=".$idUsuario." AND id_post=".$idPost;
+        $query="DELETE FROM 13_likes WHERE id_usuario=".$idUsuario." AND id_post=".$idPost;
     }
 
     var_dump(Database::usuarioHaDadoLike($idUsuario,$idPost));

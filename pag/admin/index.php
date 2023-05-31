@@ -5,7 +5,7 @@
     function verAdmin(){
         if (isset($_SESSION['id_usuario_validado'])) {
             if ($_SESSION['admin']) {
-                echo '<a href="index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>pepep';
+                echo '<a href="index.php" class="admin-btn"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
             }
         }else{
             header("Location: ../login.php");
