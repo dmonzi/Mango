@@ -10,7 +10,7 @@ function filtro() {
         }
     } else {
         for (let i = 0; i < resultados.length; i++) {
-            if (resultados[i]['text'].includes(busqueda)) {
+            if (resultados[i]['text'].toLowerCase().includes(busqueda.toLowerCase())) {
                 resultados[i].style.display = "block";
             }else{
                 resultados[i].style.display = "none";

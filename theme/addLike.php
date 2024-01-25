@@ -1,5 +1,5 @@
 <?php 
-    require_once('../theme/database.php');
+    require_once('database.php');
 
     session_start();
 
@@ -8,9 +8,6 @@
     
     $idPost=$_POST['idPost'];
     $idUsuario=$_SESSION['id_usuario_validado'];
-
-    // $idPost=3;
-    // $idUsuario=1;
 
     if (Database::vecesLikesUsuarioPost($idUsuario,$idPost)==0) {
         $query="INSERT INTO 13_likes (id, id_usuario, id_post) VALUES (NULL, '".$idUsuario."', '".$idPost."')";

@@ -18,13 +18,13 @@
 <body id="body-login">
     <main>
         <div id="login-form">
-            <a href="../index.html"><img id="logo-login" src="../images/logo3.png" alt=""></a>
+            <a href="#"><img id="logo-login" src="../images/logo3.png" alt=""></a>
             <p>Crear Cuenta</p>
             <form method="POST">
-                <input type="text" name="nombre" placeholder="Nombre" required><br><br>
-                <input type="text" name="nombreUsuario" placeholder="Nombre de Usuario" required><br><br>
-                <input type="email" name="email" placeholder="Email" required><br><br>
-                <input id="passwd" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
+                <input autocomplete="off" type="text" name="nombre" placeholder="Nombre" required><br><br>
+                <input autocomplete="off" type="text" name="nombreUsuario" placeholder="Nombre de Usuario" required><br><br>
+                <input autocomplete="off" type="email" name="email" placeholder="Email" required><br><br>
+                <input autocomplete="off" id="passwd" class="cntr" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
                 <input type="submit" name="iniciar" value="Crear Cuenta">
                 <?php
                     $database = new Database();
@@ -39,9 +39,11 @@
                         }else if(Database::getNumRows("SELECT nombre_usuario, email FROM 13_usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'")>0){
                             print "El usuario ya existe, pruebe con otro nombre";
                         }else{
-                            //$contraseña_crypt = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
+                            
+                            $passwordCorrecta=password_hash($_POST['passwd'],PASSWORD_DEFAULT);
+
                             $sql = "INSERT INTO 13_usuarios (id, nombre, nombre_usuario, email, passwd) 
-                            VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$_POST['passwd']."')";
+                            VALUES (NULL, '".$_POST['nombre']."', '".$_POST['nombreUsuario']."', '".$_POST['email']."', '".$passwordCorrecta."')";
                             $resultado = Database::conectar()->query($sql);
                             $query="SELECT id FROM 13_usuarios WHERE nombre_usuario='".$_POST['nombreUsuario']."'";
 

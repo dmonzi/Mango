@@ -10,9 +10,13 @@
     #login-form{
         width: 95vw;        
     }
+    .tarjeta {
+        width: 50vw;
+        height: 50vw;
+    }
 }
 
-@media screen and (min-width:481px) and (max-width:768px) {
+@media screen and (max-width:768px) {
     #warning{
         width: 80%;
     }
@@ -24,7 +28,7 @@
         height: 25px;
     }
     .globo {
-        width: 80%;
+        width: 90%;
     }
     #plus{
         width: 45px;
@@ -32,18 +36,36 @@
         bottom: 10px;
     }
     #top-usr {
-        width: 75%;
+        width: 100%;
+        flex-direction: column;
+    }
+    #nom-usr {
+        margin: 0 15px;
+    }
+    #grupo1{
+        width: 80%;
+    }
+    #cerrar-sesion{
+        width: 140px;
+    }
+    #contador {
+        margin: 20px 0;
     }
     #login-form{
         width: 75vw;        
     }
     .tarjeta {
-        width: 35vw;
         margin: 10px 0;
+        width: 50vw;
+        height: 50vw;
+    }
+    .principal{
+        margin: 2vw;
+        width: 90%;
     }
 }
 
-@media screen and (min-width:769px) and (max-width:1279px) {
+@media all and (max-width:1279px) {
     .txt {
         font-size: 17px;
     }
@@ -59,8 +81,10 @@
         font-size: 16px;
     }
     #login-form{
-        width: 45vw;        
+        width: 90vw;        
     }
 }
 
-@media screen and (min-width:1280px) {}/*Está todo bien a esta resolución*/
+@media all and (max-width: 1380px){
+
+}/*Está todo bien a esta resolución*/

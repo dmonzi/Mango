@@ -1,5 +1,5 @@
 <?php 
-    require_once('../theme\database.php');
+    require_once('../theme/database.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,11 +17,11 @@
 <body id="body-login">
     <main>
         <div id="login-form">
-            <div id="logo-login"><a href="../index.php"><img src="../images/logo3.png" alt=""></a></div>
+            <div id="logo-login"><a href="#"><img src="../images/logo3.png" alt=""></a></div>
             <p>Iniciar Sesión</p>
             <form method="POST">
-                <input type="text" name="nombre" placeholder="Nombre de Usuario" required><br><br>
-                <input id="passwd" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
+                <input autocomplete="off" type="text" name="nombre" placeholder="Nombre de Usuario" required><br><br>
+                <input autocomplete="off" id="passwd" type="password" name="passwd" placeholder="Contraseña" required onkeyup="validarContraseña()"><br><br>
                 <input type="submit" name="iniciar" value="Inicia Sesión">
                 <?php
                     $database = new Database();
@@ -29,7 +29,6 @@
                             
                             $nombre = $_POST['nombre'];
                             $contraseña = $_POST['passwd'];
-                            $contraseña_crypt = password_hash($contraseña, PASSWORD_DEFAULT);
                             $conexion = $database -> conectar();
                             $query="SELECT id, nombre_usuario, passwd FROM 13_usuarios WHERE nombre_usuario='".$nombre."'";
                             $resultado=$conexion->query($query);
@@ -37,12 +36,17 @@
                             
                             if($numRows==0){
                                 print("<p>Ha ocurrido un error, el usuario no existe</p>");
-                            }else{                                
+                            }else{
+                                
+                                $passwordCorrecta=password_hash($contraseña,PASSWORD_DEFAULT);
+                                
                                 $fila=$resultado->fetch(PDO::FETCH_ASSOC);
                                 $idBD=$fila['id'];
                                 $passwdBD=$fila['passwd'];
                                 $usuarioBD=$fila['nombre_usuario'];
-                                if ($passwdBD == $contraseña) {
+                                // echo $passwordCorrecta."<br>";
+                                // echo $passwdBD;
+                                if (password_verify($contraseña,$passwdBD)) {
                                     session_start();
                                     echo "<p>Bienvenido, ".$usuarioBD."!</p>";
                                     $_SESSION['usuario_validado'] = $usuarioBD;

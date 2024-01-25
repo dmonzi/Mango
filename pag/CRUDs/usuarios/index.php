@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    require_once('../../../theme\database.php');
+    require_once('../../../theme/database.php');
 
     function findUsr(){
         $database = new Database();

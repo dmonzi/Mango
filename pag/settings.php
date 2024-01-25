@@ -1,5 +1,5 @@
 <?php 
-    require_once('../theme\database.php');
+    require_once('../theme/database.php');
     //session_start();
 
     function usuario(){
@@ -8,9 +8,9 @@
 
         $resultado = $conexion->query('select * from 13_usuarios where id="'.$_SESSION['id_usuario_validado'].'"')->fetch(PDO::FETCH_ASSOC);
 
-        echo '<input type="text" name="nombre" placeholder="Nombre" value="'.$resultado['nombre'].'">
-                <input type="text" name="nom_usr" placeholder="Nombre Usuario" value="'.$resultado['nombre_usuario'].'">
-                <input type="text" name="email" placeholder="Email" value="'.$resultado['email'].'">';
+        echo '<input autocomplete="off" type="text" name="nombre" placeholder="Nombre" value="'.$resultado['nombre'].'">
+                <input autocomplete="off" type="text" name="nom_usr" placeholder="Nombre Usuario" value="'.$resultado['nombre_usuario'].'">
+                <input autocomplete="off" type="text" name="email" placeholder="Email" value="'.$resultado['email'].'">';
     }
 ?>
 <!DOCTYPE html>
@@ -47,20 +47,22 @@
                 <!-- Cambiar contraseña de tu cuenta de usuario -->
                 <details>
                     <form action="../theme/ajustes.php?act=2" method="post">
-                        <input type="text" name="old_pass" placeholder="Contraseña actual" required>
-                        <input type="text" name="new_pass" placeholder="Contraseña nueva" required>
-                        <input type="text" name="rep_pass" placeholder="Repetir contraseña" required>
+                        <input autocomplete="off" type="password" name="old_pass" placeholder="Contraseña actual" required>
+                        <input autocomplete="off" class="cntr" type="text" name="new_pass" placeholder="Contraseña nueva" required onkeyup="validarContraseña()">
+                        <input autocomplete="off" type="text" name="rep_pass" placeholder="Repetir contraseña" required>
+                        <span id="alertPasswd"></span>
                         <input type="submit" name="Guardar">
                     </form>
                     <summary>Editar contraseña</summary>
                 </details>
                 <!-- Cambiar foto de perfil -->
                 <details>
+                    <!-- <h4>En mantenimiento</h4> -->
                     <form action="../theme/ajustes.php?act=3" method="post" enctype="multipart/form-data">
                     <input type="file" id="foto-post" name="foto" accept=".png, .jpeg, .jpg">
                         <input type="submit" name="Guardar">
                     </form>
-                    <summary>Editar foto de perfil</summary>
+                    <summary>Editar foto de perfil</summary> 
                 </details>
             </div>
         </div>

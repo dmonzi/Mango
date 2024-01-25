@@ -1,5 +1,5 @@
 <?php
-    require_once('../theme\database.php');
+    require_once('../theme/database.php');
 
     function verColor($postId){
         $database = new Database();
@@ -43,7 +43,7 @@
             $seguidores = $conexion->query($sql)->fetch(PDO::FETCH_ASSOC)['count(*)'];
 
             // Recoger los posts
-            $sql = "select * from 13_Usuario_Posts where user_id=".$_SESSION['id_usuario_validado']." order by hora desc";
+            $sql = "select * from 13_Usuario_posts where user_id=".$_SESSION['id_usuario_validado']." order by hora desc";
             $posts = $conexion->query($sql);
 
             // Imprimir los resultados
@@ -134,6 +134,9 @@
         <?php 
             mostrarUsr();
         ?>
+        <a href="./upload.php">
+            <div id="plus"><img src="../images/plus.png"></div>
+        </a>
     </main>
 </body>
 <script src="../icons/fontawesome.js"></script>

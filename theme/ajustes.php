@@ -1,5 +1,5 @@
 <?php
-    require_once('../theme\database.php');
+    require_once('../theme/database.php');
     session_start();
     
     $database = new Database();
@@ -16,9 +16,11 @@
         
         case 2:
             # contraseña
-            if ($conexion->query('select count(*) from 13_usuarios where id='.$_SESSION['id_usuario_validado'].' && passwd="'.$_POST['old_pass'].'"')->fetch(PDO::FETCH_ASSOC)['count(*)'] > 0) {
+            $contraseñaBD = $conexion->query('select passwd from 13_usuarios where id='.$_SESSION['id_usuario_validado'])->fetch(PDO::FETCH_ASSOC)['passwd'];
+            if (password_verify($_POST['old_pass'],$contraseñaBD)) {
                 if ($_POST['new_pass'] == $_POST['rep_pass']) {
-                    $conexion->query('update 13_usuarios set passwd="'.$_POST['new_pass'].'" where id='.$_SESSION['id_usuario_validado']);
+                    $newPass = password_hash($_POST['new_pass'],PASSWORD_DEFAULT);
+                    $conexion->query('update 13_usuarios set passwd="'.$newPass.'" where id='.$_SESSION['id_usuario_validado']);
                     header("Location: ../pag/settings.php");
                 }else {
                     echo 'Las nuevas contraseñas no coinciden';
@@ -36,15 +38,15 @@
             $tipo = $archivo['type'];
 
             if($tipo == "image/jpg" || $tipo == "image/jpeg" || $tipo == "image/png"){
-    
+                
                 $ruta = '../images/'.$archivo['name'];
-    
+                
                 move_uploaded_file($archivo['tmp_name'], $ruta);
-
+                
                 $query='update 13_usuarios set foto_perfil="'.$archivo['name'].'" where id='.$_SESSION['id_usuario_validado'];
-                print $query;
+                // print $query;
                 $conexion->query($query);
-                    
+                
                 header("Location: ../pag/settings.php");
                 
             }else{

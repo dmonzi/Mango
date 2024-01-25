@@ -48,7 +48,7 @@
             <h2>¡Busca un usuario!</h2>
             <form>
                 <label>
-                    <input id="buscador" type="text" name="titulo" placeholder="Buscar..." onkeyup="filtro()">
+                    <input id="buscador" type="text" name="titulo" placeholder="Buscar..." onkeyup="filtro()" autocomplete="off">
                     <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </label>
             </form>

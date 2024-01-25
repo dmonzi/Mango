@@ -12,7 +12,7 @@
     <main>
         <?php
             session_start();
-            require_once('../../../theme\database.php');
+            require_once('../../../theme/database.php');
 
             if(isset($_POST['iniciar'])){
                 if (isset($_GET['id'])) {

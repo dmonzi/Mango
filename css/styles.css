@@ -87,6 +87,7 @@ a {
     justify-content: space-between;
     margin-left: 2%;
     margin-top: 1%;
+    overflow: hidden;
 }
 
 .fot-txt img {
@@ -94,6 +95,7 @@ a {
     height: 76px;
     border-radius: 38px;
     margin-right: 20px;
+    aspect-ratio: 1/1;
 }
 
 .fot-txt div {
@@ -105,10 +107,9 @@ a {
 }
 
 .txt {
-    display: flex;
-    align-items: center;
     margin-top: 15px;
     font-size: 20px;
+    overflow-wrap: anywhere;
 }
 
 .fot-txt div:last-child {
@@ -328,20 +329,20 @@ a {
 }
 
 #cerrar-sesion{
-    width: 130px;
+    width: 170px;
 }
 
 #cerrar-sesion p {
     border: 1px solid black;
     border-radius: 5px;
-    /*width: 106%;*/
     margin: 1%;
     text-align: center;
-    /* margin-left: 15px; */
+    padding: 5px;
 }
 
 #contador {
-    width: 10%;
+    width: 125px;
+    text-align: center;
 }
 
 #contador div {
@@ -489,6 +490,10 @@ td:nth-child(even),
 th:nth-child(even) {
     background-color: #a5a5a59f;
 }
+#admin-table tr td:nth-child(3){
+    padding: 5px;
+    overflow-wrap: anywhere;
+}
 
 th,
 td {
@@ -512,6 +517,7 @@ td {
 #admin-table table {
     width: 80vw;
     border-collapse: collapse;
+    margin-bottom: 50px;
 }
 
 #admin-table #tablaAdmins{
@@ -520,12 +526,14 @@ td {
 }
 
 .action-btn {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    padding: 20px;
+    width: 15%;
+    text-align: center;
 }
 
 .action-btn a {
+    width: 15%;
+    display: inline-block;
     padding: 5%;
     margin: 1%;
     background-color: black;
@@ -573,7 +581,7 @@ td {
 
 /* incio upload */
 .principal {
-    margin-left: 20vw;
+    margin: 0 auto;
     width: 60vw;
 }
 
@@ -639,7 +647,6 @@ td {
   min-width: 160px;
   z-index: 1;
   right: 0;
-  top: 8%;
   border-radius: 0 0 5px 5px;
 }
 

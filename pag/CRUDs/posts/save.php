@@ -10,7 +10,7 @@
 <body>
     <main>
     <?php
-        require_once('../../../theme\database.php');
+        require_once('../../../theme/database.php');
 
         if(isset($_POST['iniciar'])){
             $database = new Database();

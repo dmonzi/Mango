@@ -3,20 +3,18 @@
     class Database{
         public static function conectar(){
             $driver="mysql";
-            $host="localhost";
-            $port="3306";
-            $bd="13_mango";
-            $user="root";
-            $password="";
-            $dsn="$driver:dbname=$bd;host=$host;port=$port";
+            $host="no-peeking";
+            $bd="";
+            $port=;
+            $dsn="$driver:host=$host;port=$port;dbname=$bd;charset=UTF8";
 
             try {
-                $conexion=new PDO($dsn, $user, $password);
+                $conexion=new PDO($dsn, 'nope', 'nothing-here');
+                // $conexion->setAttribute(PDO::ATTR_ERRORMODE, PDO::ERRORMODE_EXCEPTION);
                 // echo 'Conectado correctamente';
             } catch (PDOException $e) {
                 echo 'Falló la conexión ' . $e->getMessage();
             }
-
             return $conexion;
         }
 

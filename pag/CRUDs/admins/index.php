@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    require_once('../../../theme\database.php');
+    require_once('../../../theme/database.php');
 
     function findPosts(){
         $database = new Database();

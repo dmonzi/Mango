@@ -23,13 +23,18 @@
     // }
 
     if(isset($_POST['publicar'])){
-        $query="INSERT INTO 13_posts (id, hora, contenido, usuario_id, ruta_foto) VALUES (NULL, CURRENT_TIMESTAMP,'".$_POST['contenido']."', ".$_SESSION['id_usuario_validado'].", '".$archivo['name']."')";
+        if (str_contains($_POST['contenido'], "<video") || str_contains($_POST['contenido'], "<img") || str_contains($_POST['contenido'], "style") || str_contains($_POST['contenido'], "script") || str_contains($_POST['contenido'], "<?sql")) {
+            echo '<script>alert("NO METAIS ETIQUETAS HTML, DARNOS TIEMPO A IMPLEMENTARLO");</script>';
+            echo $_POST['contenido'];
+        }else{
+            $query="INSERT INTO 13_posts (id, hora, contenido, usuario_id, ruta_foto) VALUES (NULL, CURRENT_TIMESTAMP,'".$_POST['contenido']."', ".$_SESSION['id_usuario_validado'].", '".$archivo['name']."')";
         //lo tengo que almacenar en una variable para poder usar el row count
         $resultadoQuery=$conexion->query($query);
         //Evaluo cuantas filas han sido afectadas con ese insert
         if($resultadoQuery->rowCount()>0){
             header("Location: ../pag/profile.php");
         }   
+        }
     }
     
 ?>

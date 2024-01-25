@@ -20,7 +20,7 @@
         <div class="principal">
             <h1>Crea tu nuevo post</h1>
             <form id="contenidoTweet" method="POST" action="../theme/guardarPost.php" enctype="multipart/form-data">
-                <textarea name="contenido" cols="100" rows="10" placeholder="Ecribe aquí!" require></textarea>
+                <textarea name="contenido" cols="100" rows="10" placeholder="Escribe aquí!" require></textarea>
                 <input type="submit" name="publicar" value="Publicar">
                 <!-- <label for="foto-post">Añadir una imagen: </label> -->
                 <!-- <input type="file" id="foto-post" name="foto" accept=".png, .jpeg, .jpg"> -->
@@ -28,6 +28,6 @@
         </div>
     </main>
 </body>
-<script src="../js/users.js"></script>
+<script src="../js/app.js"></script>
 <script src="../icons/fontawesome.js"></script>
 </html>

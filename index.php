@@ -2,7 +2,7 @@
 
     ob_start();
 
-    require_once('theme\database.php');
+    require_once('theme/database.php');
 
     session_start();
 
@@ -28,9 +28,9 @@
                             <img src="./images/'.$conexion->query("select foto_perfil from 13_usuarios where id='".$fila['user_id']."'")->fetch(PDO::FETCH_ASSOC)['foto_perfil'].'" alt="fot_usr">
                             <div>
                                 <a class="nom" href="./pag/user.php?id='.$fila['user_id'].'">'.$fila['nombre'].'</a>
-                                <p class="txt">'.$fila['contenido'].'</p>
+                                <p class="txt">'.htmlspecialchars($fila['contenido']).'</p>
                                 <div class="likes">'.
-                                    '<i id="id" class="fa-solid fa-heart heart '.verColor($fila['id']).'" onclick="insertarDatos('.$fila['id'].','.$_SESSION['id_usuario_validado'].',\'./theme/addLike.php\')">'.Database::getLikesPost($fila['id']).
+                                    '<i class="fa-solid fa-heart heart '.verColor($fila['id']).'" onclick="insertarDatos('.$fila['id'].','.$_SESSION['id_usuario_validado'].',\'./theme/addLike.php\')">'.Database::getLikesPost($fila['id']).
                                     '</i>
                                 </div>
                             </div>

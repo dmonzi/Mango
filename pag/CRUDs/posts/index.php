@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    require_once('../../../theme\database.php');
+    require_once('../../../theme/database.php');
 
     function findPosts(){
         $database = new Database();
@@ -99,6 +99,5 @@
         </a>
     </main>
 </body>
-    <script src="../../../js/users.js"></script>
     <script src="../../../icons/fontawesome.js"></script>
 </html>

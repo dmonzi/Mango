@@ -3,11 +3,11 @@ let menu=false;
 /* Signup ----------------------------------------------*/
 
 function validarContraseña() {
-    let expresion, passwd, longitud, mayuscula, hasNumero, resultadoRegex;
+    let expresion, passwd, resultadoRegex;
     let passwdInput, spanPasswd, valorSpan;
-    passwd=document.forms[0]['elements']['passwd']['value'];
-    expresion=/(?=.*\w+)(?=.*\S+)/;
-    // expresion=/^(?=.*\d+)$/;
+    passwd=document.getElementsByClassName('cntr')[0].value;
+    expresion=/^(?=.*[A-Z])(?=.*\d.*\d)[^\s]{8}$/;
+    // cambiar lo de 8
 
     passwdInput = document.getElementById('passwd');
     
@@ -30,6 +30,24 @@ function addPopUp(array){
     let popUpContainer, popUpContent, popUpContentA;
     let divPopUp;
     for(let puntosTweet of array){
+        //Aqui lo que hago es crear los elementos para cada post
+
+        //Un div con la clase popUp que es el contenedor
+        //popUpContainer=document.createElement('div');
+        //popUpContainer.classList.add('popUp');
+
+        //Un enlace que es el contenedor del texto
+        //popUpContentA=document.createElement('a');
+        //popUpContentA.setAttribute('href','#');
+
+        //El texto en sí
+        //popUpContent=document.createElement('p');
+        //popUpContent.textContent='Seguir a @nom_usr';
+
+        //Vamos metiendo en el orden correcto el p dentro del a y este a dentro del div
+        //popUpContentA.appendChild(popUpContent);
+        //popUpContainer.appendChild(popUpContentA);
+        //puntosTweet.appendChild(popUpContainer);
 
         //Pongo a escucha del evento click a todos los elementos
         //con la clase ptos, que son los tres puntos que deben 
@@ -74,11 +92,13 @@ document.addEventListener("DOMContentLoaded", function(event){
     addPopUp(puntos);
 });
 
-for(heart of hearts){
+for(let heart of hearts){
     
     heart.addEventListener("click", function(event){
         /*por cada click que se haga se pasa por parámetro el elemento que ha desencadenado la acción
         y se llama a la función like*/
+
+        heart.style.animation='animation: latido 2s ease 0s 1 normal forwards';
 
         like(event.target);
     });
@@ -105,11 +125,13 @@ function insertarDatos(idPost, idUsuario, ruta) {
       method: 'POST',
       data: { idPost: idPost, idUsuario: idUsuario },
       success: function(response) {
+        console.log(idPost+" "+idUsuario+" "+ ruta);
         console.log(response);
         // Aquí puedes realizar acciones adicionales después de la inserción exitosa
       },
       error: function(xhr, status, error) {
         console.log(xhr.responseText);
+        console.log(idPost+" "+idUsuario+" "+ ruta);
         // Aquí puedes manejar los errores en caso de que ocurra algún problema durante la inserción
       }
     });

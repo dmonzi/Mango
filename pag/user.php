@@ -28,7 +28,7 @@
 
             if ($resultado == 0) {
                 //no le sigues
-                $boton = '<a href="../theme/añadirSeguidor.php?id='.$id.'"><p>Seguir</p></a>';
+                $boton = '<a href="../theme/addSeguidor.php?id='.$id.'"><p>Seguir</p></a>';
             }else{
                 // le sigues
                 $boton = '<a href="../theme/eliminarSeguidor.php?id='.$id.'&loc=pag/user.php?id='.$id.'"><p>Dejar de Seguir</p></a>';
@@ -56,7 +56,7 @@
             $seguidores = $conexion->query($sql)->fetch(PDO::FETCH_ASSOC)['count(*)'];
 
             // Recoger los posts
-            $sql = "select * from 13_Usuario_Posts where user_id=".$id." order by hora desc";
+            $sql = "select * from 13_Usuario_posts where user_id=".$id." order by hora desc";
             $posts = $conexion->query($sql);
 
             // Imprimir los resultados
@@ -86,19 +86,12 @@
                                         <a class="nom" href="./user.php">'.$nombre.'</a>
                                         <p class="txt">'.$fila['contenido'].'</p>
                                         <div class="likes">'.
-                                            '<i id="id" class="fa-solid fa-heart heart '.verColor($fila['id']).'" onclick="insertarDatos('.$fila['id'].','.$_SESSION['id_usuario_validado'].',\'../theme/addLike.php\')">'.Database::getLikesPost($fila['id']).
+                                            '<i class="fa-solid fa-heart heart '.verColor($fila['id']).'" onclick="insertarDatos('.$fila['id'].','.$_SESSION['id_usuario_validado'].',\'../theme/addLike.php\')">'.Database::getLikesPost($fila['id']).
                                             '</i>
                                         </div>
                                     </div>
                                 </div>';
-                                echo '<div class="ptos">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    <div class="popUp">
-                                        <a href="../theme/eliminarPost.php?id='.$fila['id'].'">
-                                            <p>Borrar publicación</p>
-                                        </a>
-                                    </div>
-                                </div>
+                                echo '
                             </div>
                         </div>';
                 }
