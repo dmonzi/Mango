@@ -18,17 +18,6 @@
             return $conexion;
         }
 
-    // public function conectar(){
-    //     $driver = 'mysql';
-    //     $host = 'localhost';
-    //     $name = 'mango';
-    //     $user = 'root';
-    //     $pass = '';
-
-    //     $conexion = new PDO($driver.':host='.$host.';dbname='.$name.'', $user, $pass);
-    //     return $conexion;
-    // }
-
         public static function getNumRows($sql){
             $resultado=self::conectar()->query($sql);
             $numRows=$resultado->rowCount();
